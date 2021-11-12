@@ -1,0 +1,457 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  # Use public Systems Manager Parameter
+  LatestAmiId:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+Resources:
+  VPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: movingupstack vpc
+  InternetGateway:
+    Type: 'AWS::EC2::InternetGateway'
+  InternetGatewayAttachment:
+    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+  NatGatewayOneEIP:
+    Type: AWS::EC2::EIP
+    DependsOn: InternetGatewayAttachment
+    Properties:
+      Domain: vpc
+  NatGatewayTwoEIP:
+    Type: AWS::EC2::EIP
+    DependsOn: InternetGatewayAttachment
+    Properties:
+      Domain: vpc
+  NatGatewayOne:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt NatGatewayOneEIP.AllocationId
+      SubnetId: !Ref PublicSubnetOne
+  NatGatewayTwo:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt NatGatewayTwoEIP.AllocationId
+      SubnetId: !Ref PublicSubnetTwo
+  #Subnets
+  PublicSubnetOne:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      AvailabilityZone: !Select [0, !GetAZs ""]
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.0.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: Public Subnet One (AZ1)
+  PublicSubnetTwo:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      AvailabilityZone: !Select [1, !GetAZs ""]
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.1.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: Public Subnet Two (AZ2)
+  PrivateSubnetOne:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      AvailabilityZone: !Select [0, !GetAZs ""]
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.2.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: Private Subnet One (AZ1)
+  PrivateSubnetTwo:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      AvailabilityZone: !Select [1, !GetAZs ""]
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.3.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: Private Subnet Two (AZ2)
+  PublicRouteTable:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref VPC
+  PrivateRouteTableOne:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+  PrivateRouteTableTwo:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+
+  DefaultPrivateRouteOne:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PrivateRouteTableOne
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NatGatewayOne
+  DefaultPrivateRouteTwo:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PrivateRouteTableTwo
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NatGatewayTwo
+
+  InternetRoute:
+    Type: 'AWS::EC2::Route'
+    DependsOn: InternetGateway
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+      RouteTableId: !Ref PublicRouteTable
+  PublicSubnetOneRouteTableAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnetOne
+  PublicSubnetTwoRouteTableAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnetTwo
+  PrivateSubnetOneRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PrivateRouteTableOne
+      SubnetId: !Ref PrivateSubnetOne
+  PrivateSubnetTwoRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PrivateRouteTableTwo
+      SubnetId: !Ref PrivateSubnetTwo
+  ALBSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: "security group for ALB"
+      GroupName: "security group for ALB"
+      Tags: 
+        - Key: "Scenario0"
+          Value: "Monolith"
+      VpcId: !Ref VPC
+      SecurityGroupIngress: 
+        - 
+          CidrIp: "0.0.0.0/0"
+          FromPort: 80
+          IpProtocol: "tcp"
+          ToPort: 80
+        - 
+          CidrIp: "0.0.0.0/0"
+          FromPort: 443
+          IpProtocol: "tcp"
+          ToPort: 443
+  ApplicationLoadBalancer:
+    Type: "AWS::ElasticLoadBalancingV2::LoadBalancer"
+    Properties:
+      Name: "Application-Load-Balancer"
+      Scheme: "internet-facing"
+      Type: "application"
+      Subnets: 
+        - !Ref PublicSubnetOne
+        - !Ref PublicSubnetTwo
+      SecurityGroups: 
+        - !Ref ALBSecurityGroup
+      IpAddressType: "ipv4"
+      LoadBalancerAttributes: 
+              - 
+                Key: "access_logs.s3.enabled"
+                Value: "false"
+              - 
+                Key: "idle_timeout.timeout_seconds"
+                Value: "60"
+              - 
+                Key: "deletion_protection.enabled"
+                Value: "false"
+              - 
+                Key: "routing.http2.enabled"
+                Value: "true"
+              - 
+                Key: "routing.http.drop_invalid_header_fields.enabled"
+                Value: "false"
+  LoadBalancerListener:
+      Type: AWS::ElasticLoadBalancingV2::Listener
+      Properties:
+        LoadBalancerArn: !Ref ApplicationLoadBalancer
+        Port: 80
+        Protocol: HTTP
+        DefaultActions:
+          - Type: forward
+            TargetGroupArn: !Ref WebTargetGroup
+        # Conditions:
+        #   - Field: path-pattern
+        #     Values:
+        #       - "/api*"
+
+  LoadBalancerListenerRule1:
+    Type: 'AWS::ElasticLoadBalancingV2::ListenerRule'
+    Properties:
+      Actions:
+        - Type: forward
+          ForwardConfig:
+            TargetGroups:
+              - TargetGroupArn: !Ref AppTargetGroup
+      Conditions:
+        - Field: path-pattern
+          Values:
+            - "/api*"
+      ListenerArn: !Ref LoadBalancerListener
+      Priority: 1
+
+  # LoadBalancerListenerRule2:
+  #   Type: 'AWS::ElasticLoadBalancingV2::ListenerRule'
+  #   Properties:
+  #     Actions:
+  #       - Type: forward
+  #         ForwardConfig:
+  #           TargetGroups:
+  #             - TargetGroupArn: !Ref WebTargetGroup
+  #     ListenerArn: !Ref LoadBalancerListener
+  #     Priority: 2
+
+  WebTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckIntervalSeconds: 6
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 2
+      HealthCheckPath: /
+      Matcher:
+        HttpCode: '200'
+      Name: WebTargetGroup
+      Port: 8080
+      Protocol: HTTP
+      TargetGroupAttributes:
+      - Key: deregistration_delay.timeout_seconds
+        Value: '20'
+      Targets:
+      - Id:
+          Ref: Webserver
+        Port: 8080
+      UnhealthyThresholdCount: 2
+      VpcId:
+        Ref: 'VPC'
+      Tags:
+      - Key: Name
+        Value: WebTargetGroup
+      - Key: Port
+        Value: 8080
+        
+  AppTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckIntervalSeconds: 6
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 2
+      HealthCheckPath: /api/health
+      Matcher:
+        HttpCode: '200'
+      Name: AppTargetGroup
+      Port: 5000
+      Protocol: HTTP
+      TargetGroupAttributes:
+      - Key: deregistration_delay.timeout_seconds
+        Value: '20'
+      Targets:
+      - Id:
+          Ref: Appserver
+        Port: 5000
+      UnhealthyThresholdCount: 2
+      VpcId:
+        Ref: 'VPC'
+      Tags:
+      - Key: Name
+        Value: AppTargetGroup
+      - Key: Port
+        Value: 5000
+
+  SSMInstanceRole: 
+    Type : AWS::IAM::Role
+    Properties:
+      Policies:
+        - PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Action:
+                  - s3:GetObject
+                Resource: 
+                  - !Sub 'arn:aws:s3:::aws-ssm-${AWS::Region}/*'
+                  - !Sub 'arn:aws:s3:::aws-windows-downloads-${AWS::Region}/*'
+                  - !Sub 'arn:aws:s3:::amazon-ssm-${AWS::Region}/*'
+                  - !Sub 'arn:aws:s3:::amazon-ssm-packages-${AWS::Region}/*'
+                  - !Sub 'arn:aws:s3:::${AWS::Region}-birdwatcher-prod/*'
+                  - !Sub 'arn:aws:s3:::patch-baseline-snapshot-${AWS::Region}/*'
+                Effect: Allow
+          PolicyName: ssm-custom-s3-policy
+      Path: /
+      ManagedPolicyArns:
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/AmazonSSMManagedInstanceCore'
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Effect: "Allow"
+          Principal:
+            Service:
+            - "ec2.amazonaws.com"
+            - "ssm.amazonaws.com"
+          Action: "sts:AssumeRole"
+  SSMInstanceProfile:
+    Type: "AWS::IAM::InstanceProfile"
+    Properties:
+      Roles:
+      - !Ref SSMInstanceRole
+  #Webserver instance
+  Webserver:
+    Type: 'AWS::EC2::Instance'
+    DependsOn:
+    - ApplicationLoadBalancer
+    Properties:
+      InstanceType: t2.micro
+      ImageId: !Ref LatestAmiId
+      IamInstanceProfile: !Ref 'SSMInstanceProfile'
+      SubnetId: !Ref PrivateSubnetOne
+      Tags:
+        - Key: "Name"
+          Value: "WebServer"
+      SecurityGroupIds:
+      - Ref: InstanceSecurityGroup
+      UserData:
+            Fn::Base64:
+              Fn::Sub:
+              - |
+                #!/bin/bash
+                sudo yum update -y
+                sudo amazon-linux-extras install docker
+                sudo yum install docker
+                sudo service docker start
+                sudo usermod -a -G docker ec2-user
+                sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+                sudo chmod +x /usr/local/bin/docker-compose
+                base64 -d <<< dmVyc2lvbjogIjMuNSIKc2VydmljZXM6CiAgd2ViYXBwOgogICAgaW1hZ2U6IHB1YmxpYy5lY3IuYXdzL2Q1ZDFlM3c0L21vZGVybml6YXRpb24td29ya3Nob3AtZnJvbnRlbmQ6bGF0ZXN0CiAgICByZXN0YXJ0OiBhbHdheXMKICAgIGVudmlyb25tZW50OgogICAgICAtIEFQSV9VUkxfVkFMVUU9aHR0cDovL2xvY2FsaG9zdDo1MDAwCiAgICBwb3J0czoKICAgICAgLSAiODA4MDo4MCIKICAgIG5ldHdvcmtzOgogICAgICAtIHByb3h5bmV0Cm5ldHdvcmtzOgogIHByb3h5bmV0OgogICAgbmFtZTogY3VzdG9tX25ldHdvcms=  > /tmp/docker-compose-raw.yml
+                cd /tmp
+                echo "************************************"
+                sed 's/localhost:5000/${ApplicationLoadBalancer}/' docker-compose-raw.yml > docker-compose.yml
+                docker-compose up -d
+              - ApplicationLoadBalancer: !GetAtt ApplicationLoadBalancer.DNSName 
+  #Appserver instance
+  Appserver:
+    Type: 'AWS::EC2::Instance'
+    DependsOn:
+    - ApplicationLoadBalancer
+    Properties:
+      InstanceType: t2.micro
+      ImageId: !Ref LatestAmiId
+      IamInstanceProfile: !Ref 'SSMInstanceProfile'
+      SubnetId: !Ref PrivateSubnetTwo
+      Tags:
+        - Key: "Name"
+          Value: "AppServer" 
+      SecurityGroupIds:
+      - Ref: InstanceSecurityGroup
+      UserData:
+            Fn::Base64: 
+              Fn::Sub:
+              - |
+                #!/bin/bash
+                sudo yum update -y
+                sudo amazon-linux-extras install docker
+                sudo yum install docker
+                sudo service docker start
+                sudo usermod -a -G docker ec2-user
+                sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+                sudo chmod +x /usr/local/bin/docker-compose
+                base64 -d <<< dmVyc2lvbjogIjMuNSIKc2VydmljZXM6CiAgYXBpLW1vbm9saXRoOgogICAgaW1hZ2U6IHB1YmxpYy5lY3IuYXdzL2Q1ZDFlM3c0L21vZGVybml6YXRpb24td29ya3Nob3AtYXBpLW1vbm9saXRoOmxhdGVzdAogICAgaG9zdG5hbWU6IGFwaS1lbmRwb2ludAogICAgcmVzdGFydDogYWx3YXlzCiAgICBlbnZpcm9ubWVudDoKICAgICAgLSBSRURJU19IT1NUPXJlZGlzLWVuZHBvaW50CiAgICAgIC0gUkVESVNfUE9SVD02Mzc5CiAgICAgIC0gREJfSE9TVD1teXNxbC1lbmRwb2ludAogICAgICAtIERCX1VTRVI9cm9vdAogICAgICAtIERCX1BBU1NXT1JEPW15QXdlc29tZVBhc3N3b3JkCiAgICAgIC0gREFUQUJBU0U9bXlkYgogICAgcG9ydHM6CiAgICAgIC0gIjUwMDA6NTAwMCIKICAgIGRlcGVuZHNfb246CiAgICAgIC0gcmVkaXMKICAgICAgLSBteXNxbAogICAgbmV0d29ya3M6CiAgICAgIC0gcHJveHluZXQKICByZWRpczoKICAgIGltYWdlOiByZWRpczo2LjIuNQogICAgaG9zdG5hbWU6IHJlZGlzLWVuZHBvaW50CiAgICByZXN0YXJ0OiBhbHdheXMKICAgIG5ldHdvcmtzOgogICAgICAtIHByb3h5bmV0CiAgbXlzcWw6CiAgICBpbWFnZTogbXlzcWw6OC4wCiAgICBob3N0bmFtZTogbXlzcWwtZW5kcG9pbnQKICAgIHJlc3RhcnQ6IGFsd2F5cwogICAgZW52aXJvbm1lbnQ6CiAgICAgIC0gTVlTUUxfUk9PVF9QQVNTV09SRD1teUF3ZXNvbWVQYXNzd29yZAogICAgdm9sdW1lczoKICAgICAgLSAuL215c3FsL2luaXQuc3FsOi9kYXRhL2FwcGxpY2F0aW9uL2luaXQuc3FsCiAgICBjb21tYW5kOiAtLWluaXQtZmlsZSAvZGF0YS9hcHBsaWNhdGlvbi9pbml0LnNxbAogICAgbmV0d29ya3M6CiAgICAgIC0gcHJveHluZXQKCm5ldHdvcmtzOgogIHByb3h5bmV0OgogICAgbmFtZTogY3VzdG9tX25ldHdvcmsK  > /tmp/docker-compose.yml
+                sudo mkdir /tmp/mysql
+                base64 -d <<< Q1JFQVRFIERBVEFCQVNFIElGIE5PVCBFWElTVFMgYG15ZGJgOwoKVVNFIGBteWRiYDsKCkRST1AgVEFCTEUgSUYgRVhJU1RTIGB1c2Vyc2A7CgpDUkVBVEUgVEFCTEUgYHVzZXJzYCAoCiAgYGlkYCBpbnQgTk9UIE5VTEwsCiAgYHVzZXJuYW1lYCB2YXJjaGFyKDUwKSBOT1QgTlVMTCwKICBgbmFtZWAgdmFyY2hhcig1MCkgTk9UIE5VTEwsCiAgYGJpb2AgdmFyY2hhcig1MCkgTk9UIE5VTEwsCiAgUFJJTUFSWSBLRVkgKGBpZGApCik7CgoKaW5zZXJ0ICBpbnRvIGB1c2Vyc2AoYGlkYCxgdXNlcm5hbWVgLGBuYW1lYCxgYmlvYCkgdmFsdWVzCigxLCdtYXJjZWxpbmUnLCdNYXJjZWxpbmUgQWJhZGVlcicsJzEwMDAgeWVhciBvbGQgdmFtcGlyZSBxdWVlbiwgbXVzaWNpYW4nKTsKCi0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoKRFJPUCBUQUJMRSBJRiBFWElTVFMgYHBvc3RzYDsKCkNSRUFURSBUQUJMRSBgcG9zdHNgICgKICBgdGhyZWFkYCBpbnQgTk9UIE5VTEwsCiAgYHRleHRgIHZhcmNoYXIoNTApIE5PVCBOVUxMLAogIGB1c2VyYCBpbnQgTk9UIE5VTEwsCiAgUFJJTUFSWSBLRVkgKGB0aHJlYWRgKQopOwoKCmluc2VydCAgaW50byBgcG9zdHNgKGB0aHJlYWRgLGB0ZXh0YCxgdXNlcmApIHZhbHVlcwooMSwnSGFzIGFueW9uZSBjaGVja2VkIG9uIHRoZSBsaWNoIHJlY2VudGx5PycsMSk7CgotLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCkRST1AgVEFCTEUgSUYgRVhJU1RTIGB0aHJlYWRzYDsKCkNSRUFURSBUQUJMRSBgdGhyZWFkc2AgKAogIGBpZGAgaW50IE5PVCBOVUxMLAogIGB0aXRsZWAgdmFyY2hhcig1MCkgTk9UIE5VTEwsCiAgYGNyZWF0ZWRCeWAgaW50IE5PVCBOVUxMLAogIFBSSU1BUlkgS0VZIChgaWRgKQopOwoKaW5zZXJ0ICBpbnRvIGB0aHJlYWRzYChgaWRgLGB0aXRsZWAsYGNyZWF0ZWRCeWApIHZhbHVlcwooMSwnV2hhdCcncyB1cCB3aXRoIHRoZSBMaWNoPycsMSk7Cg==  > /tmp/mysql/init.sql
+                cd /tmp
+                docker-compose up -d
+              - ApplicationLoadBalancer: !GetAtt ApplicationLoadBalancer.DNSName 
+              
+  InstanceSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupName: Webserver Target Group
+      GroupDescription: WebserverAcess
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          SourceSecurityGroupId: !Ref ALBSecurityGroup
+        - IpProtocol: tcp 
+          FromPort: '5000'
+          ToPort: '5000'
+          SourceSecurityGroupId: !Ref ALBSecurityGroup
+        - IpProtocol: tcp
+          FromPort: '8080'
+          ToPort: '8080'
+          SourceSecurityGroupId: !Ref ALBSecurityGroup
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+  
+Outputs:        
+  LoadBalancerUrl:
+    Description: The URL of the ALB
+    Value: !GetAtt ApplicationLoadBalancer.DNSName
+    Export:
+      Name:
+        'Fn::Sub': '${AWS::StackName}-LoadBalancerUrl'
+  VPCId:
+    Description: The ID of the VPC that this stack is deployed in
+    Value: !Ref 'VPC'
+    Export:
+      Name: !Join [':', [!Ref "AWS::StackName", "VPCId" ]]
+  PublicSubnetOne:
+    Description: The subnet ID to use for referencing
+    Value:
+      Ref: PublicSubnetOne
+    Export:
+      Name:
+        'Fn::Sub': '${AWS::StackName}-PublicSubnetOneID'
+  PublicSubnetTwo:
+    Description: The subnet ID to use for referencing
+    Value:
+      Ref: PublicSubnetTwo
+    Export:
+      Name:
+        'Fn::Sub': '${AWS::StackName}-PublicSubnetTwoID'
+  PrivateSubnetOne:
+    Description: The subnet ID to use for public web servers
+    Value:
+      Ref: PrivateSubnetOne
+    Export:
+      Name:
+        'Fn::Sub': '${AWS::StackName}-PrivateSubnetOneID'
+  PrivateSubnetTwo:
+    Description: The subnet ID to use for public web servers
+    Value:
+      Ref: PrivateSubnetTwo
+    Export:
+      Name:
+        'Fn::Sub': '${AWS::StackName}-PrivateSubnetTwoID'
+  SecurityGroup:
+    Description: The SG of LB
+    Value: 
+      Ref: ALBSecurityGroup
+    Export: 
+      Name: 
+        'Fn::Sub': '${AWS::StackName}-SecurityGroupID'
+  

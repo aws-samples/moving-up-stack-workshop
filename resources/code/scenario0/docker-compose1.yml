@@ -1,0 +1,58 @@
+version: "3.5"
+services:
+  webapp:
+    build: ./webapp
+    image: frontend:latest
+    restart: always
+    environment:
+      - API_URL_VALUE=http://localhost:5000
+    ports:
+      - "8080:80"
+    depends_on:
+      - api-monolith
+    networks:
+      - proxynet
+  api-monolith:
+    build: ./api
+    image: api-monolith:latest
+    hostname: api-endpoint
+    restart: always
+    environment:
+      - REDIS_HOST=redis-endpoint
+      - REDIS_PORT=6379
+      - DB_HOST=mysql-endpoint
+      - DB_USER=root
+      - DB_PASSWORD=myAwesomePassword
+      - DATABASE=mydb
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+      - mysql
+    networks:
+      - proxynet
+  redis:
+    image: redis:6.2.5
+    hostname: redis-endpoint
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - proxynet
+  mysql:
+    image: mysql:8.0
+    hostname: mysql-endpoint
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=myAwesomePassword
+    volumes:
+      - ./mysql/init.sql:/data/application/init.sql
+    command: --init-file /data/application/init.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - proxynet
+
+networks:
+  proxynet:
+    name: custom_network

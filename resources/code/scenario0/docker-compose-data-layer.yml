@@ -1,0 +1,27 @@
+version: "3.5"
+services:
+  redis:
+    image: redis:6.2.5
+    hostname: redis-endpoint
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - proxynet
+  mysql:
+    image: mysql:8.0
+    hostname: mysql-endpoint
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=myAwesomePassword
+    volumes:
+      - ./mysql/init.sql:/data/application/init.sql
+    command: --init-file /data/application/init.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - proxynet
+
+networks:
+  proxynet:
+    name: custom_network

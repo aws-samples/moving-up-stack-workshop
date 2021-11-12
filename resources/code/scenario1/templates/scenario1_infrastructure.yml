@@ -1,0 +1,385 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  NetworkStackParameter:
+    Type: String
+  DBUser:
+    Type: String
+    Default: root
+  DBPassword:
+    Type: String
+    Default: myAwesomePassword
+  Database:
+    Type: String
+    Default: mydb
+Resources:
+  Cluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: Workshop-MovingUpTheTechStack
+  TaskDefinition1:
+    Type: AWS::ECS::TaskDefinition
+    # Makes sure the log group is created before it is used.
+    # DependsOn: LogGroup
+    Properties:
+      # Name of the task definition. Subsequent versions of the task definition are grouped together under this name.
+      Family: posts
+      # awsvpc is required for Fargate
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      # 256 (.25 vCPU) - Available memory values: 0.5GB, 1GB, 2GB
+      # 512 (.5 vCPU) - Available memory values: 1GB, 2GB, 3GB, 4GB
+      # 1024 (1 vCPU) - Available memory values: 2GB, 3GB, 4GB, 5GB, 6GB, 7GB, 8GB
+      # 2048 (2 vCPU) - Available memory values: Between 4GB and 16GB in 1GB increments
+      # 4096 (4 vCPU) - Available memory values: Between 8GB and 30GB in 1GB increments
+      Cpu: 256
+      # 0.5GB, 1GB, 2GB - Available cpu values: 256 (.25 vCPU)
+      # 1GB, 2GB, 3GB, 4GB - Available cpu values: 512 (.5 vCPU)
+      # 2GB, 3GB, 4GB, 5GB, 6GB, 7GB, 8GB - Available cpu values: 1024 (1 vCPU)
+      # Between 4GB and 16GB in 1GB increments - Available cpu values: 2048 (2 vCPU)
+      # Between 8GB and 30GB in 1GB increments - Available cpu values: 4096 (4 vCPU)
+      Memory: 1GB
+      ContainerDefinitions:
+      - Name: posts
+        Image: public.ecr.aws/d5d1e3w4/modernization-workshop-api-posts:latest
+        Environment:
+        - Name: REDIS_HOST 
+          Value: !GetAtt ElasticacheCluster.RedisEndpoint.Address
+        - Name: REDIS_PORT
+          Value: !GetAtt ElasticacheCluster.RedisEndpoint.Port
+        - Name: DB_HOST
+          Value: !GetAtt DBInstance.Endpoint.Address
+        - Name: DB_USER
+          Value: !Ref DBUser
+        - Name: DB_PASSWORD
+          Value: !Ref DBPassword
+        - Name: DATABASE
+          Value: !Ref Database
+        PortMappings:
+        - ContainerPort: 5000
+        # Send logs to CloudWatch Logs    
+        LogConfiguration:
+          LogDriver: awslogs
+          Options:
+            awslogs-region: !Ref AWS::Region
+            awslogs-group: !Ref LogGroup
+            awslogs-stream-prefix: ecs
+         
+      # A role needed by ECS.
+      # "The ARN of the task execution role that containers in this task can assume. All containers in this task are granted the permissions that are specified in this role."
+      # "There is an optional task execution IAM role that you can specify with Fargate to allow your Fargate tasks to make API calls to Amazon ECR."
+      ExecutionRoleArn: !Ref ExecutionRole
+      # "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that grants containers in the task permission to call AWS APIs on your behalf."
+      TaskRoleArn: !Ref TaskRole
+      
+  TaskDefinition2:
+      Type: AWS::ECS::TaskDefinition
+      Properties:
+        Family: users
+        NetworkMode: awsvpc
+        RequiresCompatibilities:
+          - FARGATE
+        Cpu: 256
+        Memory: 1GB
+        ContainerDefinitions:
+        - Name: users
+          Image: public.ecr.aws/d5d1e3w4/modernization-workshop-api-users:latest
+          Environment:
+          - Name: REDIS_HOST 
+            Value: !GetAtt ElasticacheCluster.RedisEndpoint.Address
+          - Name: REDIS_PORT
+            Value: !GetAtt ElasticacheCluster.RedisEndpoint.Port
+          - Name: DB_HOST
+            Value: !GetAtt DBInstance.Endpoint.Address
+          - Name: DB_USER
+            Value: !Ref DBUser
+          - Name: DB_PASSWORD
+            Value:  !Ref DBPassword
+          - Name: DATABASE
+            Value:  !Ref Database
+          PortMappings:
+          - ContainerPort: 5000
+          
+  TaskDefinition3:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: threads
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      Cpu: 256
+      Memory: 1GB
+      ContainerDefinitions:
+      - Name: threads
+        Image: public.ecr.aws/d5d1e3w4/modernization-workshop-api-threads:latest
+        Environment:
+          - Name: REDIS_HOST 
+            Value: !GetAtt ElasticacheCluster.RedisEndpoint.Address
+          - Name: REDIS_PORT
+            Value: !GetAtt ElasticacheCluster.RedisEndpoint.Port
+          - Name: DB_HOST
+            Value: !GetAtt DBInstance.Endpoint.Address
+          - Name: DB_USER
+            Value: !Ref DBUser
+          - Name: DB_PASSWORD
+            Value:  !Ref DBPassword
+          - Name: DATABASE
+            Value:  !Ref Database
+        PortMappings:
+        - ContainerPort: 5000
+        
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Join ['', [/ecs/, TaskDefinition]]
+      # A role needed by ECS
+  ExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: ECSTaskExecutionRole
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy'
+  # A role for the containers
+  TaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: containerRole
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: 'sts:AssumeRole'
+  # A role needed for auto scaling
+  AutoScalingRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: EC2ContainerServiceAutoscaleRole
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceAutoscaleRole'
+  ContainerSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupName: Container Security Group
+      GroupDescription: Container Security Group
+      VpcId: !ImportValue
+        'Fn::Sub': '${NetworkStackParameter}:VPCId'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          SourceSecurityGroupId: !ImportValue
+            'Fn::Sub': '${NetworkStackParameter}-SecurityGroupID'
+        - IpProtocol: tcp 
+          FromPort: '5000'
+          ToPort: '5000'
+          SourceSecurityGroupId: !ImportValue
+            'Fn::Sub': '${NetworkStackParameter}-SecurityGroupID'
+        - IpProtocol: tcp
+          FromPort: '8080'
+          ToPort: '8080'
+          SourceSecurityGroupId: !ImportValue
+            'Fn::Sub': '${NetworkStackParameter}-SecurityGroupID'
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+
+#RDS
+
+  rdsSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:      
+      GroupDescription: Enable database access for application
+      VpcId: !ImportValue
+        'Fn::Sub': '${NetworkStackParameter}:VPCId'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '3306'
+          ToPort: '3306'
+          SourceSecurityGroupId: !Ref ContainerSecurityGroup
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+  rdsSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Subnet Group
+      DBSubnetGroupName: db-subnetgroup
+      SubnetIds: 
+        - !ImportValue
+          'Fn::Sub': '${NetworkStackParameter}-PrivateSubnetOneID'
+        - !ImportValue
+          'Fn::Sub': '${NetworkStackParameter}-PrivateSubnetTwoID'
+  DBInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBName: !Ref Database
+      Engine: MySQL
+      MasterUsername: !Ref DBUser
+      DBInstanceClass: db.t2.small  
+      AllocatedStorage: 20      
+      MasterUserPassword: !Ref DBPassword
+      PubliclyAccessible: false
+      VPCSecurityGroups: 
+        - !Ref rdsSecurityGroup
+      DBSubnetGroupName: 
+        Ref: rdsSubnetGroup
+
+#Redis
+  ElasticacheCluster:
+    Type: 'AWS::ElastiCache::CacheCluster'
+    Properties:    
+      Engine: redis
+      ClusterName: MyRedisCluster
+      Port: 6379 
+      CacheNodeType: cache.t2.micro
+      NumCacheNodes: '1'
+      VpcSecurityGroupIds:
+      - !GetAtt
+        - ElasticacheSecurityGroup
+        - GroupId
+      CacheSubnetGroupName: redis-cache-subnetgroup
+  ElasticacheSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Elasticache Security Group
+      VpcId: !ImportValue
+        'Fn::Sub': '${NetworkStackParameter}:VPCId'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 6379
+          ToPort: 6379
+          SourceSecurityGroupId: !ImportValue
+            'Fn::Sub': '${NetworkStackParameter}-SecurityGroupID'
+        - IpProtocol: tcp
+          FromPort: 6379
+          ToPort: 6379
+          SourceSecurityGroupId: !Ref ContainerSecurityGroup
+  redisSubnetGroup:
+    Type: AWS::ElastiCache::SubnetGroup
+    Properties:
+      Description: Cache Subnet Group
+      CacheSubnetGroupName: redis-cache-subnetgroup
+      SubnetIds: 
+        - !ImportValue
+          'Fn::Sub': '${NetworkStackParameter}-PrivateSubnetOneID'
+        - !ImportValue
+          'Fn::Sub': '${NetworkStackParameter}-PrivateSubnetTwoID'
+
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Properties:
+      PublicAccessBlockConfiguration: 
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true  
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: S3Bucket
+      PolicyDocument:
+        Statement:
+          - Action: s3:GetObject
+            Effect: Allow
+            Principal:
+              CanonicalUser:
+                Fn::GetAtt:
+                  - CloudfrontDistroOrigin
+                  - S3CanonicalUserId
+            Resource:
+              Fn::Join:
+                - ""
+                - - Fn::GetAtt:
+                      - S3Bucket
+                      - Arn
+                  - /*
+        Version: "2012-10-17"
+  
+  #Cloudfront Config
+  CloudfrontDistroOrigin:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: Identity for S3CloudFrontCloudfrontDistroOrigin1B7AC5020
+  CloudfrontDistro:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        CacheBehaviors:
+          - CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
+            PathPattern: /api*
+            TargetOriginId: workshop-loadblanacer
+            ViewerProtocolPolicy: allow-all
+        DefaultCacheBehavior:
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          Compress: true
+          TargetOriginId: S3CloudFrontCloudfrontDistroOrigin1B7AC5020
+          ViewerProtocolPolicy: allow-all
+        DefaultRootObject: index.html
+        Enabled: true
+        HttpVersion: http2
+        IPV6Enabled: true
+        Origins:
+          - DomainName:
+              Fn::GetAtt:
+                - S3Bucket
+                - RegionalDomainName
+            Id: S3CloudFrontCloudfrontDistroOrigin1B7AC5020
+            S3OriginConfig:
+              OriginAccessIdentity:
+                Fn::Join:
+                  - ""
+                  - - origin-access-identity/cloudfront/
+                    - Ref: CloudfrontDistroOrigin
+          - DomainName: !ImportValue 
+              'Fn::Sub': '${NetworkStackParameter}-LoadBalancerUrl'
+            Id: "workshop-loadblanacer"
+            CustomOriginConfig:
+              HTTPPort: 80
+              OriginProtocolPolicy: http-only
+  
+Outputs:  
+    MyRedisEndpoint:
+      Description: The primary endpoint location
+      Value: !GetAtt ElasticacheCluster.RedisEndpoint.Address
+    Cluster:
+      Description: The DB Cluster Name
+      Value: !Ref DBInstance
+    S3BucketName:
+      Description: Name of the S3 Bucket
+      Value: !Ref S3Bucket
+    S3BucketArn:
+      Description: Returns the Amazon Resource Name (ARN) of the specified bucket.
+      Value: !GetAtt S3Bucket.Arn
+    S3RegionalDomainName:
+      Description: Returns the regional domain name of the specified bucket.
+      Value: !GetAtt S3Bucket.RegionalDomainName
+    CloudFrontDomainName:
+      Description: Domain name of the Cloudfront distribution
+      Value: !GetAtt CloudfrontDistro.DomainName
+    CloudFrontID:
+      Description: ID of the Cloudfront distribution
+      Value: !Ref CloudfrontDistro
+
+
+
+

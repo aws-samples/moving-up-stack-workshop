@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  AppRegistryResourceAssociation:
+    Type: AWS::ServiceCatalogAppRegistry::ResourceAssociation
+    Properties:
+      Application: "{{ environment.outputs.ApplicationName }}"
+      Resource: !Ref AWS::StackName
+      ResourceType: CFN_STACK
+  AppRegistryAttributeGroup:
+    Type: AWS::ServiceCatalogAppRegistry::AttributeGroup
+    Properties:
+      Attributes: {
+        "ApplicationName": "{{ environment.outputs.ApplicationName }}",
+        "CostCenter": "{{ environment.outputs.CostCenter }}",
+        "LOB_Owner": "{{ environment.outputs.LobOwner }}",
+        "OnCall": {
+          "PrimaryName": "{{service_instance.inputs.on_call_primary_name}}",
+          "PrimaryPhone": "{{service_instance.inputs.on_call_primary_phone}}",
+          "EscalationVP": "{{service_instance.inputs.on_call_escalation_vp}}",
+          "EscalationPhone": "{{service_instance.inputs.on_call_escalation_phone}}"
+        },
+        "AppMeta": {
+          "ReferenceArchitecture": "{{service_instance.inputs.app_meta_reference_architecture}}"
+        }
+      }
+      Description: "{{ environment.outputs.ApplicationName }}-{{ environment.name }}-{{service.name}}-{{service_instance.name}}"
+      Name: "{{ environment.outputs.ApplicationName }}-{{ environment.name }}-{{service.name}}-{{service_instance.name}}"
+  AppRegistryAttributeGroupAssociation:
+    Type: AWS::ServiceCatalogAppRegistry::AttributeGroupAssociation
+    Properties:
+      Application: "{{ environment.outputs.ApplicationName }}"
+      AttributeGroup: "{{ environment.outputs.ApplicationName }}-{{ environment.name }}-{{service.name}}-{{service_instance.name}}"
+    DependsOn:
+      - AppRegistryAttributeGroup

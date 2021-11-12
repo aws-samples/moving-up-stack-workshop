@@ -1,0 +1,10 @@
+proton: ServiceSpec
+instances:
+  - name: template_service
+    environment: template-env
+    spec:
+    on_call_primary_name: Danny
+    on_call_primary_phone: 012-345-6789
+    on_call_escalation_vp: Rohn
+    on_call_escalation_phone: 987-654-3210
+    app_meta_reference_architecture: 'https://myapp-refs-posts-api.com'

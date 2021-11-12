@@ -1,0 +1,13 @@
+schema:
+  format:
+    openapi: "3.0.0"
+  environment_input_type: "S3CFEnvironmentInput"
+  types:
+    S3CFEnvironmentInput:
+      type: object
+      description: "Input properties for a S3 and Cloudfront environment"
+      properties:
+        S3EnforcePublicBlock:
+          type: string
+          description: "Setting this value to true will enforce block public access to the S3 Bucket"
+          default: "true"

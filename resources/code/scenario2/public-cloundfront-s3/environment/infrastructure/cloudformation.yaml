@@ -1,0 +1,99 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creates an S3 Bucket and Cloudfront Distribution to host static sites
+Mappings:
+  # The VPC and subnet configuration is passed in via the environment spec.
+  EnvironmentNameConfig:
+    Environment:
+      Name: '{{ environment.name}}'
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Properties:
+      PublicAccessBlockConfiguration: 
+        BlockPublicAcls: {{ environment.inputs.S3EnforcePublicBlock}}
+        BlockPublicPolicy: {{ environment.inputs.S3EnforcePublicBlock}}
+        IgnorePublicAcls: {{ environment.inputs.S3EnforcePublicBlock}}
+        RestrictPublicBuckets: {{ environment.inputs.S3EnforcePublicBlock}}
+      Tags:
+        - Key: ProtonEnvironment
+          Value: !FindInMap ['EnvironmentNameConfig', 'Environment', 'Name']
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: S3Bucket
+      PolicyDocument:
+        Statement:
+          - Action: s3:GetObject
+            Effect: Allow
+            Principal:
+              CanonicalUser:
+                Fn::GetAtt:
+                  - CloudfrontDistroOrigin
+                  - S3CanonicalUserId
+            Resource:
+              Fn::Join:
+                - ""
+                - - Fn::GetAtt:
+                      - S3Bucket
+                      - Arn
+                  - /*
+        Version: "2012-10-17"
+  CloudfrontDistroOrigin:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: Identity for S3CloudFrontCloudfrontDistroOrigin1B7AC5020
+  CloudfrontDistro:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        DefaultCacheBehavior:
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          Compress: true
+          TargetOriginId: S3CloudFrontCloudfrontDistroOrigin1B7AC5020
+          ViewerProtocolPolicy: allow-all
+        Enabled: true
+        HttpVersion: http2
+        IPV6Enabled: true
+        Origins:
+          - DomainName:
+              Fn::GetAtt:
+                - S3Bucket
+                - RegionalDomainName
+            Id: S3CloudFrontCloudfrontDistroOrigin1B7AC5020
+            S3OriginConfig:
+              OriginAccessIdentity:
+                Fn::Join:
+                  - ""
+                  - - origin-access-identity/cloudfront/
+                    - Ref: CloudfrontDistroOrigin
+      Tags:
+        - Key: ProtonEnvironment
+          Value: !FindInMap ['EnvironmentNameConfig', 'Environment', 'Name']
+                    
+# These output values will be available to service templates to use.
+Outputs:
+  S3BucketName:
+    Description: Name of the S3 Bucket
+    Value: !Ref S3Bucket
+  S3BucketArn:
+    Description: Returns the Amazon Resource Name (ARN) of the specified bucket.
+    Value: !GetAtt S3Bucket.Arn
+  S3RegionalDomainName:
+    Description: Returns the regional domain name of the specified bucket.
+    Value: !GetAtt S3Bucket.RegionalDomainName
+  S3EnforcePublicBlock:
+    Description: Specifices if blocking public access is enforced
+    Value: {{ environment.inputs.S3EnforcePublicBlock}}
+  CloudFrontDomainName:
+    Description: Domain name of the Cloudfront distribution
+    Value: !GetAtt CloudfrontDistro.DomainName
+  CloudFrontID:
+    Description: ID of the Cloudfront distribution
+    Value: !Ref CloudfrontDistro
+
+
+

@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  AppRegistryLogGroupCoreServicesCfStack:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: "WorkshopScenario-{{ environment.inputs.application_name }}-{{ environment.name }}"
+# ======================================================================================================================
+  AppRegistryResourceAssociation:
+    Type: AWS::ServiceCatalogAppRegistry::ResourceAssociation
+    Properties:
+      Application: "{{ environment.inputs.application_name }}"
+      Resource: !Ref AWS::StackName
+      ResourceType: CFN_STACK
+  AppRegistryAttributeGroup:
+    Type: AWS::ServiceCatalogAppRegistry::AttributeGroup
+    Properties:
+      Attributes: {
+        "ApplicationName": "{{ environment.inputs.application_name }}",
+        "CostCenter": "{{ environment.inputs.cost_center }}",
+        "LOB_Owner": "{{ environment.inputs.lob_owner }}"
+      }
+      Description: "{{ environment.inputs.application_name }}-{{ environment.name }}"
+      Name: "{{ environment.inputs.application_name }}-{{ environment.name }}"
+  AppRegistryAttributeGroupAssociation:
+    Type: AWS::ServiceCatalogAppRegistry::AttributeGroupAssociation
+    Properties:
+      Application: "{{ environment.inputs.application_name }}"
+      AttributeGroup: "{{ environment.inputs.application_name }}-{{ environment.name }}"
+    DependsOn:
+      - AppRegistryAttributeGroup
+Outputs:
+  ApplicationName:
+    Value: "{{ environment.inputs.application_name }}"
+  CostCenter:
+    Value: "{{ environment.inputs.cost_center }}"
+  LobOwner:
+    Value: "{{ environment.inputs.lob_owner }}"
+  StackName:
+    Value: !Ref AWS::StackName

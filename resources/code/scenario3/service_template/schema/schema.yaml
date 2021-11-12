@@ -1,0 +1,25 @@
+schema:
+  types:
+    ServiceInput:
+      required:
+        - on_call_primary_name
+        - on_call_primary_phone
+        - on_call_escalation_vp
+        - on_call_escalation_phone
+      properties:
+        on_call_primary_name:
+          type: string
+          description: "on_call_primary_name"
+        on_call_primary_phone:
+          type: string
+          description: "on_call_primary_phone"
+        on_call_escalation_vp:
+          type: string
+          description: "on_call_escalation_vp"
+        on_call_escalation_phone:
+          type: string
+          description: "on_call_escalation_phone"
+        app_meta_reference_architecture:
+          type: string
+          description: "app_meta_reference_architecture"
+
