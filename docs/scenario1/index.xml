@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Modernize from monolith to microservices on Workshop</title>
+    <link>/scenario1.html</link>
+    <description>Recent content in Modernize from monolith to microservices on Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language><atom:link href="/scenario1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Monolith Application</title>
+      <link>/scenario1/monolith_application.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/scenario1/monolith_application.html</guid>
+      <description>What are we going to do? In this section we will provision the monolith web architecture consisting of AWS Application Load Balancer and two EC2 instances Webserver and Appserver running containers for frontend, application, Redis cache and MySQL database.
+Step-by-step guide  Start by logging into your Cloud9 workstation. Clone the repository and open the folder.  cd ~/environment curl https://d1ivft8k7t65uv.cloudfront.net/workshop-movingupstack.zip &amp;gt; workshop-movingupstack.zip unzip -qq workshop-movingupstack.zip rm workshop-movingupstack.zip Set your default variables</description>
+    </item>
+    
+    <item>
+      <title>Modernize the monolith</title>
+      <link>/scenario1/modernize_the_monolith.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/scenario1/modernize_the_monolith.html</guid>
+      <description>What are we going to do? In this section we will break the monolithic application into microservices using combination of CloudFormation and AWS management console. The CloudFormation template will create the base infrastructure for microservices like ECS cluster, ECS task definitions, Amazon Elasticache Redis, Amazon Relational Database using MySQL, Amazon S3, and CloudFront.
+We are going to perform the following steps:  Deploy CloudFormation template to create microservices infrastructure. Create Fargate Service for three microservices posts, users, threads.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Automate management for deployments on Workshop</title>
+    <link>/scenario2.html</link>
+    <description>Recent content in Automate management for deployments on Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language><atom:link href="/scenario2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create Proton Templates</title>
+      <link>/scenario2/05_create_proton_template.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/scenario2/05_create_proton_template.html</guid>
+      <description>What are we going to do? In this section we&amp;rsquo;ll use the aws cli to configure proton templates for our environment and microservices.
+Step by step guide Start by logging into your Cloud9 workstations.
+Set your default variables
+export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r &amp;#39;.region&amp;#39;) export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text` Next, we&amp;rsquo;ll navigate to our template folder.
+cd ~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/ Configure IAM Role, S3 Bucket, and CodeStar Connections Connection Before you register your templates and deploy your environments and services, you will need to create an Amazon IAM role so that AWS Proton can manage resources in your AWS account, an Amazon S3 bucket to store your templates, and a CodeStar Connections connection to pull and deploy your application code.</description>
+    </item>
+    
+    <item>
+      <title>Create Proton Environment</title>
+      <link>/scenario2/10_create_environment.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/scenario2/10_create_environment.html</guid>
+      <description>What are we going to do? In this section we will provision the environment for our microservices. This environment will include a VPC with public and private subnets, an ECS Cluster, and the shared Application Load Balancer.
+Step by step guide With the registered and published environment template, you can now create a Proton environment from the template.
+Open the Proton Console. Click on Create environment
+Choose the Fargate Public and Private VPC template we created in the previous step and then click Configure.</description>
+    </item>
+    
+    <item>
+      <title>Create Proton Service</title>
+      <link>/scenario2/15_create_service.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/scenario2/15_create_service.html</guid>
+      <description>What are we going to do? In this section we will provision our microservices using Proton. This will mimic the developer self service experience of being able to deploy microservices.
+Step by step guide With the registered and published service template and deployed environment, you can now create a Proton service and deploy it into your Proton environment. Open the Proton Console. Click on Create service
+Choose the Fargate Public LoadBalanced Service with Redis and MySQL template we created in the previous section and then click Configure.</description>
+    </item>
+    
+  </channel>
+</rss>
