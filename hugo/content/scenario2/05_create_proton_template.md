@@ -16,7 +16,7 @@ Clone the repository and open the folder.
 ```
 cd ~/environment
 git clone git@ssh.gitlab.aws.dev:diegodal/workshop-movingupstack.git
-cd workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
+cd moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
 ```
 -->
 
@@ -31,7 +31,7 @@ export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
 Next, we'll navigate to our template folder.
 
 ```bash
-cd ~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
+cd ~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
 ```
 
 
@@ -45,7 +45,7 @@ Create the S3 bucket to store your templates:
 CONSTRAINT_ARGS="--region ${AWS_DEFAULT_REGION} --create-bucket-configuration LocationConstraint=${AWS_DEFAULT_REGION}"
 if [[ "${AWS_DEFAULT_REGION}" == "us-east-1" ]]; then CONSTRAINT_ARGS="" ; fi
 
-aws s3api create-bucket --bucket "proton-cli-templates-${ACCOUNT_ID}-${AWS_DEFAULT_REGION}" "${CONSTRAINT_ARGS}"
+aws s3api create-bucket --bucket "proton-cli-templates-${ACCOUNT_ID}-${AWS_DEFAULT_REGION}" ${CONSTRAINT_ARGS}
 ```
 
 Create the IAM role that Proton will assume to provision resources and manage AWS CloudFormation stacks in your AWS account.
@@ -139,7 +139,7 @@ aws proton create-environment-template-version \
 ```
 
 {{% notice info %}}
-If you like to examine the details of the template, take a look at the Cloudformation in the "~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/environment" folder.
+If you like to examine the details of the template, take a look at the Cloudformation in the "~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/environment" folder.
 {{% /notice %}}
 
 You can now publish the environment template version, making it available for users in your AWS account to create Proton environments.
@@ -198,7 +198,7 @@ aws proton create-service-template-version \
 ```
 
 {{% notice info %}}
-If you like to examine the details of the template, take a look at the Cloudformation in the "~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/service" folder.
+If you like to examine the details of the template, take a look at the Cloudformation in the "~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/service" folder.
 {{% /notice %}}
 
 You can now publish the Public service template version, making it available for users in your AWS account to create Proton services.

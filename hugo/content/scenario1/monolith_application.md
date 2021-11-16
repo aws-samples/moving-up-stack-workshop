@@ -13,9 +13,8 @@ In this section we will provision the monolith web architecture consisting of AW
 
 ```
 cd ~/environment
-curl https://d1ivft8k7t65uv.cloudfront.net/workshop-movingupstack.zip > workshop-movingupstack.zip
-unzip -qq workshop-movingupstack.zip
-rm workshop-movingupstack.zip
+git clone https://github.com/aws-samples/moving-up-stack-workshop
+cd moving-up-stack-workshop
 ```
 
 Set your default variables
@@ -29,7 +28,7 @@ export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
 
 ```
 cd ~/environment
-cd workshop-movingupstack/resources/code/scenario0/templates/
+cd moving-up-stack-workshop/resources/code/scenario0/templates/
 ```
 * Then run the below CLI command
 

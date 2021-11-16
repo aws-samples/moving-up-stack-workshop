@@ -31,7 +31,7 @@ continue with the Proton services.
 
 Prepare folder to update Proton templates.
 ```shell
-cd ~/environment/workshop-movingupstack/resources/code/
+cd ~/environment/moving-up-stack-workshop/resources/code/
 cp -r scenario2/loadbalanced-fargate-redis-mysql scenario3/loadbalanced-fargate-redis-mysql
 ```
 
@@ -43,7 +43,7 @@ export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
 
 Navigate to `environment/infrastructure` and open `cloudformation.yaml` by running the command below.
 ```shell
-cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/infrastructure
+cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/infrastructure
 
 # open file in Cloud9 editor
 c9 cloudformation.yaml
@@ -104,7 +104,7 @@ StackName:
 
 Navigate to `environment/schema` and open `schema.yaml` by running the command below.
 ```shell
-cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/schema
+cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/schema
 
 # open file in Cloud9 editor
 c9 schema.yaml
@@ -166,7 +166,7 @@ types:
 
 Create environment template bundle by zipping the `environment` folder, and upload the bundle to your S3 bucket.
 ```shell
-cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql
+cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql
 
 tar -czf far-pubpriv-env-template-v2.tar.gz environment/
 aws s3 cp \

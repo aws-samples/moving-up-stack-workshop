@@ -56,21 +56,6 @@ schema:
           type: string
           description: "Database instance class"
           default: "db.t3.medium"
-        DBUsername:
-          type: string
-          description: "Username for MySQL database access"
-          default: "admin"
-          minLength: 1
-          maxLength: 16
-          pattern: '[a-zA-Z][a-zA-Z0-9]*'
-        DBPassword:
-          type: string
-          pattern: '[a-zA-Z0-9]*'
-          description: "Password MySQL database access"
-          default: "myAwesomePassword"
-          minLength: 8
-          maxLength: 41
-
     PipelineInputs:
       type: object
       description: "Pipeline input properties"

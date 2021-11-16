@@ -23,7 +23,7 @@ Proton service instances so that all application resources will be identifiable 
 
 Navigate to `service/instance_infrastructure` and open `cloudformation.yaml` by running the command below.
 ```shell
-cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql/service/instance_infrastructure
+cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/service/instance_infrastructure
 
 # open file in Cloud9 editor
 c9 cloudformation.yaml
@@ -73,7 +73,7 @@ AppRegistryAttributeGroupAssociation:
 
 Navigate to `service/schema` and open `schema.yaml` by running the command below.
 ```shell
-cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql/service/schema
+cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/service/schema
 
 # open file in Cloud9 editor
 c9 schema.yaml
@@ -149,7 +149,7 @@ types:
 Create service template bundle by zipping the files, and upload the bundle to your S3 bucket.
 
 ```shell
-cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql
+cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql
 
 tar -czf farRedMy-svc-template-posts-v2.tar.gz service/
 aws s3 cp \
@@ -258,7 +258,7 @@ aws proton update-service-instance \
 -->
 
 ```shell
-cp ~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/api-users.yaml \
+cp ~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/api-users.yaml \
   ./specs/api-users.yaml   
 
 python ../helper.py \
@@ -289,7 +289,7 @@ python ./helper.py \
 -->
 
 ```shell
-cp ~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/api-threads.yaml \
+cp ~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/api-threads.yaml \
   ./specs/api-threads.yaml   
 
 python ../helper.py \
