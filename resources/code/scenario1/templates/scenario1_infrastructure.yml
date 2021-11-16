@@ -2,12 +2,6 @@ AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   NetworkStackParameter:
     Type: String
-  DBUser:
-    Type: String
-    Default: root
-  DBPassword:
-    Type: String
-    Default: myAwesomePassword
   Database:
     Type: String
     Default: mydb
@@ -50,9 +44,9 @@ Resources:
         - Name: DB_HOST
           Value: !GetAtt DBInstance.Endpoint.Address
         - Name: DB_USER
-          Value: !Ref DBUser
+          Value: !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"
         - Name: DB_PASSWORD
-          Value: !Ref DBPassword
+          Value:  !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"
         - Name: DATABASE
           Value: !Ref Database
         PortMappings:
@@ -92,9 +86,9 @@ Resources:
           - Name: DB_HOST
             Value: !GetAtt DBInstance.Endpoint.Address
           - Name: DB_USER
-            Value: !Ref DBUser
+            Value: !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"
           - Name: DB_PASSWORD
-            Value:  !Ref DBPassword
+            Value:   !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"
           - Name: DATABASE
             Value:  !Ref Database
           PortMappings:
@@ -120,9 +114,9 @@ Resources:
           - Name: DB_HOST
             Value: !GetAtt DBInstance.Endpoint.Address
           - Name: DB_USER
-            Value: !Ref DBUser
+            Value: !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"
           - Name: DB_PASSWORD
-            Value:  !Ref DBPassword
+            Value:   !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"
           - Name: DATABASE
             Value:  !Ref Database
         PortMappings:
@@ -227,10 +221,10 @@ Resources:
     Properties:
       DBName: !Ref Database
       Engine: MySQL
-      MasterUsername: !Ref DBUser
+      MasterUsername: !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"
       DBInstanceClass: db.t2.small  
       AllocatedStorage: 20      
-      MasterUserPassword: !Ref DBPassword
+      MasterUserPassword:  !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"
       PubliclyAccessible: false
       VPCSecurityGroups: 
         - !Ref rdsSecurityGroup
@@ -356,6 +350,16 @@ Resources:
             CustomOriginConfig:
               HTTPPort: 80
               OriginProtocolPolicy: http-only
+
+  MyRDSInstanceRotationSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: This is my rds instance secret
+      GenerateSecretString:
+        SecretStringTemplate: '{"username": "admin"}'
+        GenerateStringKey: password
+        PasswordLength: 16
+        ExcludeCharacters: "\"@/\\"
   
 Outputs:  
     MyRedisEndpoint:
