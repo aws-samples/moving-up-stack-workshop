@@ -49,9 +49,9 @@ Resources:
             - Name: DB_HOST
               Value: !GetAtt DatabaseInstance.Endpoint.Address
             - Name: DB_USER
-              Value: '{{service_instance.inputs.DBUsername}}'
+              Value: {{ '!Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"' }}
             - Name: DB_PASSWORD
-              Value: '{{service_instance.inputs.DBPassword}}'
+              Value: {{  '!Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"' }}
             - Name: DATABASE
               Value: '{{service_instance.inputs.DBName}}'
           Image: '{{service_instance.inputs.image}}'
@@ -314,8 +314,8 @@ Resources:
     Properties:
       Engine: aurora
       DBClusterIdentifier: '{{service_instance.name}}-Cluster'
-      MasterUsername: '{{service_instance.inputs.DBUsername}}'  
-      MasterUserPassword: '{{service_instance.inputs.DBPassword}}'  
+      MasterUsername: {{  '!Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"' }}  
+      MasterUserPassword: {{  '!Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"' }}  
       DBSubnetGroupName: !Ref "DatabaseSubnetGroup"
       VpcSecurityGroupIds: 
         - !Ref DatabaseSecurityGroup
@@ -348,6 +348,16 @@ Resources:
       SubnetIds: 
         - '{{environment.outputs.PrivateSubnetOne}}'
         - '{{environment.outputs.PrivateSubnetTwo}}'  
+
+  MyRDSInstanceRotationSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: RDS instance secret for {{service_instance.name}}
+      GenerateSecretString:
+        SecretStringTemplate: '{"username": "admin"}'
+        GenerateStringKey: password
+        PasswordLength: 16
+        ExcludeCharacters: "\"@/\\"
 
 
 Outputs:

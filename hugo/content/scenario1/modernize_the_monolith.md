@@ -22,7 +22,7 @@ In this section we will break the monolithic application into microservices usin
 
 ```
 cd ~/environment
-cd workshop-movingupstack/resources/code/scenario1/templates/
+cd moving-up-stack-workshop/resources/code/scenario1/templates/
 ```
 * Then run the below CLI command
 ```
@@ -30,7 +30,7 @@ aws cloudformation deploy \
    --template-file scenario1_infrastructure.yml \
    --region ${AWS_DEFAULT_REGION} \
    --stack-name DecoupletoMicroservices \
-   --parameter-overrides NetworkStackParameter=Monolith DBPassword=myAwesomePassword DBUser=root Database=mydb \
+   --parameter-overrides NetworkStackParameter=Monolith Database=mydb \
    --capabilities CAPABILITY_NAMED_IAM
 ```
 
@@ -141,7 +141,7 @@ it takes approximatey 10 mins to deploy the mircoservices architecture. You can 
 ### Step 5: Navigate to the static content
 
 ```
-cd ~/environment/workshop-movingupstack/resources/code/scenario0/webapp
+cd ~/environment/moving-up-stack-workshop/resources/code/scenario0/webapp
 
 ```
 
