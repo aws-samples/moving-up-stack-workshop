@@ -13,7 +13,8 @@
       
       <guid>/scenario1/monolith_application.html</guid>
       <description>What are we going to do? In this section we will provision the monolith web architecture consisting of AWS Application Load Balancer and two EC2 instances Webserver and Appserver running containers for frontend, application, Redis cache and MySQL database.
-Step-by-step guide  Start by logging into your Cloud9 workstation. Clone the repository and open the folder.  cd ~/environment curl https://d1ivft8k7t65uv.cloudfront.net/workshop-movingupstack.zip &amp;gt; workshop-movingupstack.zip unzip -qq workshop-movingupstack.zip rm workshop-movingupstack.zip Set your default variables</description>
+Step-by-step guide  Start by logging into your Cloud9 workstation. Clone the repository and open the folder.  cd ~/environment git clone https://github.com/aws-samples/moving-up-stack-workshop cd moving-up-stack-workshop Set your default variables
+export AWS_DEFAULT_REGION=$(curl -s 169.</description>
     </item>
     
     <item>

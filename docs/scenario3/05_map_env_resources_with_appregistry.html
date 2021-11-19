@@ -51,9 +51,10 @@
     <div id="header">
       <div>
     <a id="logo" href='../'>
-        <img style="vertical-align:middle" src="../images/logo.png" height="70px" />
+        <img style="vertical-align:middle" src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" height="70px" />
     </a>
 </div>
+
 
     </div>
     
@@ -102,9 +103,9 @@
  
   
     
-      <li data-nav-id="/getting_started/12_connect_to_ee.html" title="Connect to Event Engine" class="dd-item ">
-        <a href="../getting_started/12_connect_to_ee.html">
-        Connect to Event Engine
+      <li data-nav-id="/getting_started/12_connect_to_aws_account.html" title="Connect to AWS Account" class="dd-item ">
+        <a href="../getting_started/12_connect_to_aws_account.html">
+        Connect to AWS Account
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -461,6 +462,32 @@
  
 
           
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/cleanup.html" title="Cleanup" class="dd-item
+        
+        
+        
+        ">
+      <a href="../cleanup.html">
+          Cleanup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
         
     </ul>
 
@@ -596,13 +623,13 @@ application metadata. We&rsquo;ll start by associating Proton environment resour
 continue with the Proton services.</p>
 <h2 id="update-aws-proton-environment-template-and-deploy-the-new-version">Update AWS Proton environment template and deploy the new version</h2>
 <p>Prepare folder to update Proton templates.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/workshop-movingupstack/resources/code/
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/
 cp -r scenario2/loadbalanced-fargate-redis-mysql scenario3/loadbalanced-fargate-redis-mysql
 </code></pre></div><p>Set your default variables</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">export AWS_DEFAULT_REGION<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r <span style="color:#e6db74">&#39;.region&#39;</span><span style="color:#66d9ef">)</span>
 export ACCOUNT_ID<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>aws sts get-caller-identity --query Account --output text<span style="color:#e6db74">`</span>
 </code></pre></div><p>Navigate to <code>environment/infrastructure</code> and open <code>cloudformation.yaml</code> by running the command below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/infrastructure
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/infrastructure
 
 <span style="color:#75715e"># open file in Cloud9 editor</span>
 c9 cloudformation.yaml
@@ -653,7 +680,7 @@ Also, please make sure you save the file before moving to the next step.</p>
 <span style="color:#f92672">StackName</span>:
   <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref AWS::StackName</span>
 </code></pre></div><p>Navigate to <code>environment/schema</code> and open <code>schema.yaml</code> by running the command below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/schema
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/schema
 
 <span style="color:#75715e"># open file in Cloud9 editor</span>
 c9 schema.yaml
@@ -700,7 +727,7 @@ Please make sure you save the file before moving to the next step.</p>
       <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
       <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;lob_owner&#34;</span>
 </code></pre></div><p>Create environment template bundle by zipping the <code>environment</code> folder, and upload the bundle to your S3 bucket.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql
 
 tar -czf far-pubpriv-env-template-v2.tar.gz environment/
 aws s3 cp <span style="color:#ae81ff">\
@@ -1063,6 +1090,22 @@ application metadata.</p>
                     
             
         
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         

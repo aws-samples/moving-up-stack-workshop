@@ -7,17 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language><atom:link href="/getting_started/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Connect to Event Engine</title>
-      <link>/getting_started/12_connect_to_ee.html</link>
+      <title>Connect to AWS Account</title>
+      <link>/getting_started/12_connect_to_aws_account.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/getting_started/12_connect_to_ee.html</guid>
-      <description>The following steps should be executed to connect to EventEngine. 1. Open you browser and navigate to the following URL:
-https://dashboard.eventengine.run
-2. Insert the hash token provided by the AWS employee
-3. The output screen contains all the credentials and information that you will need to execute this lab. Bellow is a sample screenshot
- 📝 Note: Clicking on the file icon will copy the information to the clipboard.
- 4.</description>
+      <guid>/getting_started/12_connect_to_aws_account.html</guid>
+      <description>The following steps should be executed to apply credits if you are using your own AWS account. 1. Sign into your AWS account and click here
+ 📝 Note: Please ensure you enter the promotion code in the AWS account where you will run this workshop.
+   Click on Redeem credit at the top right of the console.
+  Enter the Promotion code issued to you by the AWS employee</description>
     </item>
     
     <item>

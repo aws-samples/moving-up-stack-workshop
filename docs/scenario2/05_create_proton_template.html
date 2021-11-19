@@ -51,9 +51,10 @@
     <div id="header">
       <div>
     <a id="logo" href='../'>
-        <img style="vertical-align:middle" src="../images/logo.png" height="70px" />
+        <img style="vertical-align:middle" src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" height="70px" />
     </a>
 </div>
+
 
     </div>
     
@@ -102,9 +103,9 @@
  
   
     
-      <li data-nav-id="/getting_started/12_connect_to_ee.html" title="Connect to Event Engine" class="dd-item ">
-        <a href="../getting_started/12_connect_to_ee.html">
-        Connect to Event Engine
+      <li data-nav-id="/getting_started/12_connect_to_aws_account.html" title="Connect to AWS Account" class="dd-item ">
+        <a href="../getting_started/12_connect_to_aws_account.html">
+        Connect to AWS Account
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -461,6 +462,32 @@
  
 
           
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/cleanup.html" title="Cleanup" class="dd-item
+        
+        
+        
+        ">
+      <a href="../cleanup.html">
+          Cleanup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
         
     </ul>
 
@@ -591,7 +618,7 @@ Clone the repository and open the folder.
 ```
 cd ~/environment
 git clone git@ssh.gitlab.aws.dev:diegodal/workshop-movingupstack.git
-cd workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
+cd moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
 ```
 -->
 <p>Set your default variables</p>
@@ -599,14 +626,14 @@ cd workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-my
 export ACCOUNT_ID<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>aws sts get-caller-identity --query Account --output text<span style="color:#e6db74">`</span>
 
 </code></pre></div><p>Next, we&rsquo;ll navigate to our template folder.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
 </code></pre></div><h3 id="configure-iam-role-s3-bucket-and-codestar-connections-connection">Configure IAM Role, S3 Bucket, and CodeStar Connections Connection</h3>
 <p>Before you register your templates and deploy your environments and services, you will need to create an Amazon IAM role so that AWS Proton can manage resources in your AWS account, an Amazon S3 bucket to store your templates, and a CodeStar Connections connection to pull and deploy your application code.</p>
 <p>Create the S3 bucket to store your templates:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CONSTRAINT_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;--region </span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74"> --create-bucket-configuration LocationConstraint=</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;us-east-1&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span> CONSTRAINT_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> ; <span style="color:#66d9ef">fi</span>
 
-aws s3api create-bucket --bucket <span style="color:#e6db74">&#34;proton-cli-templates-</span><span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CONSTRAINT_ARGS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+aws s3api create-bucket --bucket <span style="color:#e6db74">&#34;proton-cli-templates-</span><span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">${</span>CONSTRAINT_ARGS<span style="color:#e6db74">}</span>
 </code></pre></div><p>Create the IAM role that Proton will assume to provision resources and manage AWS CloudFormation stacks in your AWS account.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws iam create-role <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --role-name ProtonServiceRole <span style="color:#ae81ff">\
@@ -674,7 +701,7 @@ aws proton create-environment-template-version <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --template-name <span style="color:#e6db74">&#34;Fargate-Public-Private-VPC&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --source s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{bucket=proton-cli-templates-</span><span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">,key=far-pubpriv-env-template.tar.gz}&#34;</span>
 </code></pre></div>
-<div class="notices info" ><p>If you like to examine the details of the template, take a look at the Cloudformation in the &ldquo;~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/environment&rdquo; folder.</p>
+<div class="notices info" ><p>If you like to examine the details of the template, take a look at the Cloudformation in the &ldquo;~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/environment&rdquo; folder.</p>
 </div>
 
 <p>You can now publish the environment template version, making it available for users in your AWS account to create Proton environments.</p>
@@ -715,7 +742,7 @@ aws proton create-service-template-version <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --source s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{bucket=proton-cli-templates-</span><span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">,key=farRedMy-svc-template.tar.gz}&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --compatible-environment-templates <span style="color:#e6db74">&#39;[{&#34;templateName&#34;:&#34;Fargate-Public-Private-VPC&#34;,&#34;majorVersion&#34;:&#34;1&#34;}]&#39;</span>
 </code></pre></div>
-<div class="notices info" ><p>If you like to examine the details of the template, take a look at the Cloudformation in the &ldquo;~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/service&rdquo; folder.</p>
+<div class="notices info" ><p>If you like to examine the details of the template, take a look at the Cloudformation in the &ldquo;~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/service&rdquo; folder.</p>
 </div>
 
 <p>You can now publish the Public service template version, making it available for users in your AWS account to create Proton services.</p>
@@ -1029,6 +1056,22 @@ Click on the newly created &ldquo;Fargate Public LoadBalanced Service with Redis
                     
             
         
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         

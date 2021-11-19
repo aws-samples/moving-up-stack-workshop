@@ -51,9 +51,10 @@
     <div id="header">
       <div>
     <a id="logo" href='../'>
-        <img style="vertical-align:middle" src="../images/logo.png" height="70px" />
+        <img style="vertical-align:middle" src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" height="70px" />
     </a>
 </div>
+
 
     </div>
     
@@ -102,9 +103,9 @@
  
   
     
-      <li data-nav-id="/getting_started/12_connect_to_ee.html" title="Connect to Event Engine" class="dd-item ">
-        <a href="../getting_started/12_connect_to_ee.html">
-        Connect to Event Engine
+      <li data-nav-id="/getting_started/12_connect_to_aws_account.html" title="Connect to AWS Account" class="dd-item ">
+        <a href="../getting_started/12_connect_to_aws_account.html">
+        Connect to AWS Account
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -461,6 +462,32 @@
  
 
           
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/cleanup.html" title="Cleanup" class="dd-item
+        
+        
+        
+        ">
+      <a href="../cleanup.html">
+          Cleanup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
         
     </ul>
 
@@ -585,9 +612,8 @@
 <li>Clone the repository and open the folder.</li>
 </ul>
 <pre tabindex="0"><code>cd ~/environment
-curl https://d1ivft8k7t65uv.cloudfront.net/workshop-movingupstack.zip &gt; workshop-movingupstack.zip
-unzip -qq workshop-movingupstack.zip
-rm workshop-movingupstack.zip
+git clone https://github.com/aws-samples/moving-up-stack-workshop
+cd moving-up-stack-workshop
 </code></pre><p>Set your default variables</p>
 <pre tabindex="0"><code>export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
@@ -596,7 +622,7 @@ export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
 <li>Navigate to CloudFormation file and deploy the CloudFormation template scenario0_infrastructure.yml</li>
 </ul>
 <pre tabindex="0"><code>cd ~/environment
-cd workshop-movingupstack/resources/code/scenario0/templates/
+cd moving-up-stack-workshop/resources/code/scenario0/templates/
 </code></pre><ul>
 <li>Then run the below CLI command</li>
 </ul>
@@ -932,6 +958,22 @@ You can navigate to the <a href="https://console.aws.amazon.com/cloudformation/h
                     
             
         
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         

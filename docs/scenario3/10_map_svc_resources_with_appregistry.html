@@ -51,9 +51,10 @@
     <div id="header">
       <div>
     <a id="logo" href='../'>
-        <img style="vertical-align:middle" src="../images/logo.png" height="70px" />
+        <img style="vertical-align:middle" src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" height="70px" />
     </a>
 </div>
+
 
     </div>
     
@@ -102,9 +103,9 @@
  
   
     
-      <li data-nav-id="/getting_started/12_connect_to_ee.html" title="Connect to Event Engine" class="dd-item ">
-        <a href="../getting_started/12_connect_to_ee.html">
-        Connect to Event Engine
+      <li data-nav-id="/getting_started/12_connect_to_aws_account.html" title="Connect to AWS Account" class="dd-item ">
+        <a href="../getting_started/12_connect_to_aws_account.html">
+        Connect to AWS Account
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -461,6 +462,32 @@
  
 
           
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/cleanup.html" title="Cleanup" class="dd-item
+        
+        
+        
+        ">
+      <a href="../cleanup.html">
+          Cleanup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
         
     </ul>
 
@@ -591,7 +618,7 @@ and it’s metadata with AppRegistry application.</p>
 <p>Now that we&rsquo;ve mapped the environment resources to an application, the next step is to map the
 Proton service instances so that all application resources will be identifiable by belonging to an application.</p>
 <p>Navigate to <code>service/instance_infrastructure</code> and open <code>cloudformation.yaml</code> by running the command below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql/service/instance_infrastructure
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/service/instance_infrastructure
 
 <span style="color:#75715e"># open file in Cloud9 editor</span>
 c9 cloudformation.yaml
@@ -634,7 +661,7 @@ Also, please make sure you save the file before moving to the next step.</p>
   <span style="color:#f92672">DependsOn</span>:
     - <span style="color:#ae81ff">AppRegistryAttributeGroup</span>
 </code></pre></div><p>Navigate to <code>service/schema</code> and open <code>schema.yaml</code> by running the command below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql/service/schema
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/service/schema
 
 <span style="color:#75715e"># open file in Cloud9 editor</span>
 c9 schema.yaml
@@ -695,7 +722,7 @@ Please make sure you save the file before moving to the next step.</p>
           <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
           <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;URL to the application reference architecture&#34;</span>
 </code></pre></div><p>Create service template bundle by zipping the files, and upload the bundle to your S3 bucket.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/workshop-movingupstack/resources/code/scenario3/loadbalanced-fargate-redis-mysql
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql
 
 tar -czf farRedMy-svc-template-posts-v2.tar.gz service/
 aws s3 cp <span style="color:#ae81ff">\
@@ -788,7 +815,7 @@ aws proton update-service-instance \
     --spec "file://specs/posts-api.yaml"
 ```
 -->
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cp ~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/api-users.yaml <span style="color:#ae81ff">\
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cp ~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/api-users.yaml <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  ./specs/api-users.yaml   
 
 python ../helper.py <span style="color:#ae81ff">\
@@ -814,7 +841,7 @@ python ./helper.py \
     "./loadbalanced-fargate-redis-mysql/service/schema/schema.yaml" \
     "./service_template/schema/schema.yaml"
 -->
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cp ~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/api-threads.yaml <span style="color:#ae81ff">\
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cp ~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/api-threads.yaml <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  ./specs/api-threads.yaml   
 
 python ../helper.py <span style="color:#ae81ff">\
@@ -1129,6 +1156,22 @@ application metadata, let&rsquo;s see how we can query the AppRegistry applicati
                     
             
         
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         

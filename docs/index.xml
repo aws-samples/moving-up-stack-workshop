@@ -16,7 +16,7 @@
 Step by step guide Start by logging into your Cloud9 workstations.
 Set your default variables
 export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r &amp;#39;.region&amp;#39;) export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text` Next, we&amp;rsquo;ll navigate to our template folder.
-cd ~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fargate-redis-mysql/ Configure IAM Role, S3 Bucket, and CodeStar Connections Connection Before you register your templates and deploy your environments and services, you will need to create an Amazon IAM role so that AWS Proton can manage resources in your AWS account, an Amazon S3 bucket to store your templates, and a CodeStar Connections connection to pull and deploy your application code.</description>
+cd ~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/ Configure IAM Role, S3 Bucket, and CodeStar Connections Connection Before you register your templates and deploy your environments and services, you will need to create an Amazon IAM role so that AWS Proton can manage resources in your AWS account, an Amazon S3 bucket to store your templates, and a CodeStar Connections connection to pull and deploy your application code.</description>
     </item>
     
     <item>
@@ -36,7 +36,8 @@ cd ~/environment/workshop-movingupstack/resources/code/scenario2/loadbalanced-fa
       
       <guid>/scenario1/monolith_application.html</guid>
       <description>What are we going to do? In this section we will provision the monolith web architecture consisting of AWS Application Load Balancer and two EC2 instances Webserver and Appserver running containers for frontend, application, Redis cache and MySQL database.
-Step-by-step guide  Start by logging into your Cloud9 workstation. Clone the repository and open the folder.  cd ~/environment curl https://d1ivft8k7t65uv.cloudfront.net/workshop-movingupstack.zip &amp;gt; workshop-movingupstack.zip unzip -qq workshop-movingupstack.zip rm workshop-movingupstack.zip Set your default variables</description>
+Step-by-step guide  Start by logging into your Cloud9 workstation. Clone the repository and open the folder.  cd ~/environment git clone https://github.com/aws-samples/moving-up-stack-workshop cd moving-up-stack-workshop Set your default variables
+export AWS_DEFAULT_REGION=$(curl -s 169.</description>
     </item>
     
     <item>
@@ -71,17 +72,15 @@ We are going to perform the following steps:  Deploy CloudFormation template to 
     </item>
     
     <item>
-      <title>Connect to Event Engine</title>
-      <link>/getting_started/12_connect_to_ee.html</link>
+      <title>Connect to AWS Account</title>
+      <link>/getting_started/12_connect_to_aws_account.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/getting_started/12_connect_to_ee.html</guid>
-      <description>The following steps should be executed to connect to EventEngine. 1. Open you browser and navigate to the following URL:
-https://dashboard.eventengine.run
-2. Insert the hash token provided by the AWS employee
-3. The output screen contains all the credentials and information that you will need to execute this lab. Bellow is a sample screenshot
- 📝 Note: Clicking on the file icon will copy the information to the clipboard.
- 4.</description>
+      <guid>/getting_started/12_connect_to_aws_account.html</guid>
+      <description>The following steps should be executed to apply credits if you are using your own AWS account. 1. Sign into your AWS account and click here
+ 📝 Note: Please ensure you enter the promotion code in the AWS account where you will run this workshop.
+   Click on Redeem credit at the top right of the console.
+  Enter the Promotion code issued to you by the AWS employee</description>
     </item>
     
     <item>

@@ -7,8 +7,8 @@
 		"relativePagePath": "/getting_started.html"
 	},
 	{
-		"pageTitle": "Connect to Event Engine",
-		"relativePagePath": "/getting_started/12_connect_to_ee.html"
+		"pageTitle": "Connect to AWS Account",
+		"relativePagePath": "/getting_started/12_connect_to_aws_account.html"
 	},
 	{
 		"pageTitle": "Reference Architecture",
@@ -65,4 +65,8 @@
 	{
 		"pageTitle": "Query AppRegistry application metadata",
 		"relativePagePath": "/scenario3/15_query_appregistry_application_metadata.html"
+	},
+	{
+		"pageTitle": "Cleanup",
+		"relativePagePath": "/cleanup.html"
 	}]

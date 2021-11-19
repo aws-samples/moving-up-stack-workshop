@@ -18,7 +18,7 @@
   </url><url>
     <loc>/getting_started.html</loc>
   </url><url>
-    <loc>/getting_started/12_connect_to_ee.html</loc>
+    <loc>/getting_started/12_connect_to_aws_account.html</loc>
   </url><url>
     <loc>/getting_started/13_reference_architecture.html</loc>
   </url><url>
@@ -35,6 +35,8 @@
     <loc>/scenario2.html</loc>
   </url><url>
     <loc>/scenario3.html</loc>
+  </url><url>
+    <loc>/cleanup.html</loc>
   </url><url>
     <loc>/categories.html</loc>
   </url><url>

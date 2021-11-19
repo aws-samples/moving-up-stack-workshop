@@ -51,9 +51,10 @@
     <div id="header">
       <div>
     <a id="logo" href='../'>
-        <img style="vertical-align:middle" src="../images/logo.png" height="70px" />
+        <img style="vertical-align:middle" src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" height="70px" />
     </a>
 </div>
+
 
     </div>
     
@@ -102,9 +103,9 @@
  
   
     
-      <li data-nav-id="/getting_started/12_connect_to_ee.html" title="Connect to Event Engine" class="dd-item ">
-        <a href="../getting_started/12_connect_to_ee.html">
-        Connect to Event Engine
+      <li data-nav-id="/getting_started/12_connect_to_aws_account.html" title="Connect to AWS Account" class="dd-item ">
+        <a href="../getting_started/12_connect_to_aws_account.html">
+        Connect to AWS Account
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -461,6 +462,32 @@
  
 
           
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/cleanup.html" title="Cleanup" class="dd-item
+        
+        
+        
+        ">
+      <a href="../cleanup.html">
+          Cleanup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
         
     </ul>
 
@@ -605,7 +632,7 @@
 <li>Navigate to the CloudFormation file</li>
 </ul>
 <pre tabindex="0"><code>cd ~/environment
-cd workshop-movingupstack/resources/code/scenario1/templates/
+cd moving-up-stack-workshop/resources/code/scenario1/templates/
 </code></pre><ul>
 <li>Then run the below CLI command</li>
 </ul>
@@ -613,7 +640,7 @@ cd workshop-movingupstack/resources/code/scenario1/templates/
    --template-file scenario1_infrastructure.yml \
    --region ${AWS_DEFAULT_REGION} \
    --stack-name DecoupletoMicroservices \
-   --parameter-overrides NetworkStackParameter=Monolith DBPassword=myAwesomePassword DBUser=root Database=mydb \
+   --parameter-overrides NetworkStackParameter=Monolith Database=mydb \
    --capabilities CAPABILITY_NAMED_IAM
 </code></pre>
 <div class="notices info" ><p>it takes approximatey 10 mins to deploy the mircoservices architecture. You can start to run the CloudFormation template and explore the architecture overview in the mean time.</p>
@@ -743,7 +770,7 @@ cd workshop-movingupstack/resources/code/scenario1/templates/
 <li>Update Amazon CloudFront to point to Amazon S3 endpoint with origin access identity so you get the same user experience as the monolith.</li>
 </ul>
 <h3 id="step-5-navigate-to-the-static-content">Step 5: Navigate to the static content</h3>
-<pre tabindex="0"><code>cd ~/environment/workshop-movingupstack/resources/code/scenario0/webapp
+<pre tabindex="0"><code>cd ~/environment/moving-up-stack-workshop/resources/code/scenario0/webapp
 
 </code></pre><p>Run the below script to package the static content, upload it to Amazon S3.
 In this example, we are using Cloudfront to server the content.</p>
@@ -1066,6 +1093,22 @@ echo https://${CLOUDFRONT_URL}
                     
             
         
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         
