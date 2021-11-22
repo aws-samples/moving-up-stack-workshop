@@ -1,11 +1,11 @@
 +++
-title = "Create Proton Service"
-weight = 15
+title = "Review the Pipelines"
+weight = 20
 +++
 
 ## What are we going to do?
-In this section we will provision our microservices using Proton.
-This will mimic the developer self service experience of being able to deploy microservices.
+In this section we will review the piipeliines created by Proton. 
+
 ## Step by step guide
 
 With the registered and published service template and deployed environment, you can now create a Proton service and deploy it into your Proton environment.
