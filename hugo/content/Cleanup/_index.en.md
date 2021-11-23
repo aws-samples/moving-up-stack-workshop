@@ -35,7 +35,7 @@ If you completed this workshop at AWS event using an AWS provided account, you d
 {{%expand "Click here to expand" %}}
 * Navigate to the Listeners tab for the Application-Load-Balancer [EC2 Console](https://console.aws.amazon.com/ec2/v2/home?#LoadBalancers:).
 * Choose view/edit rules -> Delete rules -> Select three rules(api/posts, api/threads, api/users) and choose `Delete`
-* Navigate to the Application Load Balancer [Traget Groups](https://console.aws.amazon.com/ec2/v2/home?#TargetGroups:).
+* Navigate to the Application Load Balancer [Target Groups](https://console.aws.amazon.com/ec2/v2/home?#TargetGroups:).
 * Select all three microservices target groups that start with `ecs-Worksh` and choose `Actions` then `Delete`. Choose `Yes, Delete` to successfully delete the target groups.
 {{% /expand%}}
 
