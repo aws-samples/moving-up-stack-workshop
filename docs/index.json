@@ -1,0 +1,72 @@
+[
+	{	"pageTitle": "Index",
+		"relativePagePath": "/en/"
+	},
+	{
+		"pageTitle": " Getting Started",
+		"relativePagePath": "/getting_started.html"
+	},
+	{
+		"pageTitle": "Connect to AWS Account",
+		"relativePagePath": "/getting_started/12_connect_to_aws_account.html"
+	},
+	{
+		"pageTitle": "Reference Architecture",
+		"relativePagePath": "/getting_started/13_reference_architecture.html"
+	},
+	{
+		"pageTitle": "Create a Workspace",
+		"relativePagePath": "/getting_started/20_create_a_workspace.html"
+	},
+	{
+		"pageTitle": "Configure your Workspace",
+		"relativePagePath": "/getting_started/25_configure_workspace.html"
+	},
+	{
+		"pageTitle": "Modernize from monolith to microservices",
+		"relativePagePath": "/scenario1.html"
+	},
+	{
+		"pageTitle": "Monolith Application",
+		"relativePagePath": "/scenario1/monolith_application.html"
+	},
+	{
+		"pageTitle": "Modernize the monolith",
+		"relativePagePath": "/scenario1/modernize_the_monolith.html"
+	},
+	{
+		"pageTitle": "Automate management for deployments",
+		"relativePagePath": "/scenario2.html"
+	},
+	{
+		"pageTitle": "Create Proton Templates",
+		"relativePagePath": "/scenario2/05_create_proton_template.html"
+	},
+	{
+		"pageTitle": "Create Proton Environment",
+		"relativePagePath": "/scenario2/10_create_environment.html"
+	},
+	{
+		"pageTitle": "Create Proton Service",
+		"relativePagePath": "/scenario2/15_create_service.html"
+	},
+	{
+		"pageTitle": "Increase application visibility and governance",
+		"relativePagePath": "/scenario3.html"
+	},
+	{
+		"pageTitle": "Creating AppRegistry application with Proton",
+		"relativePagePath": "/scenario3/05_map_env_resources_with_appregistry.html"
+	},
+	{
+		"pageTitle": "Auto-register resources with AppRegistry",
+		"relativePagePath": "/scenario3/10_map_svc_resources_with_appregistry.html"
+	},
+	{
+		"pageTitle": "Query AppRegistry application metadata",
+		"relativePagePath": "/scenario3/15_query_appregistry_application_metadata.html"
+	},
+	{
+		"pageTitle": "Cleanup",
+		"relativePagePath": "/cleanup.html"
+	}]

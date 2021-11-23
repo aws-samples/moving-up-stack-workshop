@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.88.1" />
+    <meta name="description" content="Workshop">
+<meta name="author" content="AWS">
+
+    <link rel="shortcut icon" href="https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico" type="image/ico" />
+<link rel="icon" href="https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico" type="image/ico" />
+
+    <title>Modernize the monolith :: Workshop</title>
+
+    
+    <link href="../css/nucleus.css" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="../css/hybrid.css" rel="stylesheet">
+    <link href="../css/featherlight.min.css" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="../css/auto-complete.css" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css" rel="stylesheet">
+    <link href="../css/theme.css" rel="stylesheet">
+    <link href="../css/tabs.css" rel="stylesheet">
+    <link href="../css/hugo-theme.css" rel="stylesheet">
+    
+    <link href="../css/theme-aws.css" rel="stylesheet">
+    
+    
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="../scenario1/modernize_the_monolith.html">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <div>
+    <a id="logo" href='../'>
+        <img style="vertical-align:middle" src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" height="70px" />
+    </a>
+</div>
+
+
+    </div>
+    
+  </div>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started.html" title=" Getting Started" class="dd-item
+        
+        
+        
+        ">
+      <a href="../getting_started.html">
+          <i class='fas fa-home'></i> Getting Started
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/12_connect_to_aws_account.html" title="Connect to AWS Account" class="dd-item ">
+        <a href="../getting_started/12_connect_to_aws_account.html">
+        Connect to AWS Account
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/13_reference_architecture.html" title="Reference Architecture" class="dd-item ">
+        <a href="../getting_started/13_reference_architecture.html">
+        Reference Architecture
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/20_create_a_workspace.html" title="Create a Workspace" class="dd-item ">
+        <a href="../getting_started/20_create_a_workspace.html">
+        Create a Workspace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/25_configure_workspace.html" title="Configure your Workspace" class="dd-item ">
+        <a href="../getting_started/25_configure_workspace.html">
+        Configure your Workspace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/scenario1.html" title="Modernize from monolith to microservices" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="../scenario1.html">
+          Modernize from monolith to microservices
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario1/monolith_application.html" title="Monolith Application" class="dd-item ">
+        <a href="../scenario1/monolith_application.html">
+        Monolith Application
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario1/modernize_the_monolith.html" title="Modernize the monolith" class="dd-item active">
+        <a href="../scenario1/modernize_the_monolith.html">
+        Modernize the monolith
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/scenario2.html" title="Automate management for deployments" class="dd-item
+        
+        
+        
+        ">
+      <a href="../scenario2.html">
+          Automate management for deployments
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario2/05_create_proton_template.html" title="Create Proton Templates" class="dd-item ">
+        <a href="../scenario2/05_create_proton_template.html">
+        Create Proton Templates
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario2/10_create_environment.html" title="Create Proton Environment" class="dd-item ">
+        <a href="../scenario2/10_create_environment.html">
+        Create Proton Environment
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario2/15_create_service.html" title="Create Proton Service" class="dd-item ">
+        <a href="../scenario2/15_create_service.html">
+        Create Proton Service
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/scenario3.html" title="Increase application visibility and governance" class="dd-item
+        
+        
+        
+        ">
+      <a href="../scenario3.html">
+          Increase application visibility and governance
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario3/05_map_env_resources_with_appregistry.html" title="Creating AppRegistry application with Proton" class="dd-item ">
+        <a href="../scenario3/05_map_env_resources_with_appregistry.html">
+        Creating AppRegistry application with Proton
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario3/10_map_svc_resources_with_appregistry.html" title="Auto-register resources with AppRegistry" class="dd-item ">
+        <a href="../scenario3/10_map_svc_resources_with_appregistry.html">
+        Auto-register resources with AppRegistry
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario3/15_query_appregistry_application_metadata.html" title="Query AppRegistry application metadata" class="dd-item ">
+        <a href="../scenario3/15_query_appregistry_application_metadata.html">
+        Query AppRegistry application metadata
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/cleanup.html" title="Cleanup" class="dd-item
+        
+        
+        
+        ">
+      <a href="../cleanup.html">
+          Cleanup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li>
+                  <a class="padding" href="https://github.com/aws-samples/moving-up-stack-workshop"><i class='fab fa-github'></i> GitHub Project</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    <h5 class="copyright">&copy; 2021 Amazon Web Services, Inc. or its Affiliates. All rights reserved.<h5>
+</left>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../'>Moving up the technology stack as you modernize applications</a> > <a href='../scenario1.html'>Modernize from monolith to microservices</a> > Modernize the monolith
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#step-1-deploy-micro-services-infrastructure-using-cloud-formation">Step 1: Deploy Micro-services infrastructure using Cloud Formation.</a></li>
+        <li><a href="#architectural-overview">Architectural Overview</a></li>
+        <li><a href="#step-2-verify-of-the-aws-ecs-fargate-cluster-is-created">Step 2: Verify of the AWS ECS Fargate Cluster is created</a></li>
+        <li><a href="#step-3-create-fargate-service">Step 3: Create Fargate Service</a></li>
+        <li><a href="#what-did-you-do">What did you do?</a></li>
+        <li><a href="#what-will-you-do-next">What will you do next?</a></li>
+        <li><a href="#step-4-edit-application-load-balancer-listener-rules">Step 4: Edit Application Load Balancer Listener rules</a></li>
+        <li><a href="#what-did-you-do-1">What did you do?</a></li>
+        <li><a href="#what-will-you-do-next-1">What will you do next?</a></li>
+        <li><a href="#step-5-navigate-to-the-static-content">Step 5: Navigate to the static content</a></li>
+        <li><a href="#in-this-section-you-modernized-your-aws-infrastructure-by-decouplnig-to-microservices-moved-to-managed-services-such-as-amazon-rds-and-used-amazon-s3-to-host-static-web-content">In this section you modernized your AWS infrastructure by decouplnig to microservices, moved to managed services such as Amazon RDS and used Amazon S3 to host static web content.</a></li>
+        <li><a href="#in-the-next-section-we-will-move-up-this-stack-and-see-how-to-modernize-the-infrastructure-to-give-developers-an-easy-way-to-deploy-their-code-using-containers-and-serverless-technologies-leveraging-the-management-tools-governance-and-visibility-needed-to-provide-consistent-standards-and-best-practices">In the next section we will move up this stack and see how to modernize the infrastructure to give developers an easy way to deploy their code using containers and serverless technologies, leveraging the management tools, governance, and visibility needed to provide consistent standards and best practices.</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+
+            <h1>
+              
+              Modernize the monolith
+            </h1>
+
+
+        
+
+
+<h4 id="what-are-we-going-to-do">What are we going to do?</h4>
+<p>In this section we will break the monolithic application into microservices using combination of CloudFormation and AWS management console. The CloudFormation template will create the base infrastructure for microservices like ECS cluster, ECS task definitions, Amazon Elasticache Redis, Amazon Relational Database using MySQL, Amazon S3, and CloudFront.</p>
+<h4 id="we-are-going-to-perform-the-following-steps">We are going to perform the following steps:</h4>
+<ul>
+<li>Deploy CloudFormation template to create microservices infrastructure.</li>
+<li>Create Fargate Service for three microservices posts, users, threads.</li>
+<li>Move Frontend web static assets to Amazon S3 and point CloudFront to this S3.</li>
+</ul>
+<h3 id="step-1-deploy-micro-services-infrastructure-using-cloud-formation">Step 1: Deploy Micro-services infrastructure using Cloud Formation.</h3>
+<ul>
+<li>You can use Cloud9 environment to deploy the CloudFormation using CLI command below</li>
+</ul>
+<ul>
+<li>Navigate to the CloudFormation file</li>
+</ul>
+<pre tabindex="0"><code>cd ~/environment
+cd moving-up-stack-workshop/resources/code/scenario1/templates/
+</code></pre><ul>
+<li>Then run the below CLI command</li>
+</ul>
+<pre tabindex="0"><code>aws cloudformation deploy \
+   --template-file scenario1_infrastructure.yml \
+   --region ${AWS_DEFAULT_REGION} \
+   --stack-name DecoupletoMicroservices \
+   --parameter-overrides NetworkStackParameter=Monolith Database=mydb \
+   --capabilities CAPABILITY_NAMED_IAM
+</code></pre>
+<div class="notices info" ><p>it takes approximatey 10 mins to deploy the mircoservices architecture. You can start to run the CloudFormation template and explore the architecture overview in the mean time.</p>
+</div>
+
+<h3 id="architectural-overview">Architectural Overview</h3>
+<ul>
+<li>This is the process that you will follow to deploy the microservices and safely transition the application&rsquo;s traffic away from the monolith.</li>
+</ul>
+<p><img src="images/arch_microservice.png" alt="arch_microservice"></p>
+<h3 id="step-2-verify-of-the-aws-ecs-fargate-cluster-is-created">Step 2: Verify of the AWS ECS Fargate Cluster is created</h3>
+<ul>
+<li>
+<p>Navigate to the <a href="https://console.aws.amazon.com/ecs/home?">Amazon ECS console</a>. Your cluster should appear in the list
+<img src="images/microservicescluster.png" alt="microservicescluster"></p>
+</li>
+<li>
+<p>Verify the posts, threads, and users microservice <strong>Task Definitions</strong> were created.</p>
+</li>
+<li>
+<p>Navigate to Task Definitions tab on left side and verify that the tasks are ACTIVE
+<img src="images/taskdef.png" alt="taskdef"></p>
+</li>
+</ul>
+<h3 id="step-3-create-fargate-service">Step 3: Create Fargate Service</h3>
+<ul>
+<li>Navigate to Cluster tab on the left side and select <strong>Workshop-MovingUpTheTechStack</strong> → <strong>Services→Create</strong>
+<img src="images/cluster.png" alt="cluster"></li>
+</ul>
+<ul>
+<li>Choose Launch type: <strong>Fargate</strong>
+<ul>
+<li>Operating system family: choose <strong>Linux</strong> from the dropdown</li>
+<li>Task Definition: under dropdown choose <em>posts</em></li>
+<li>Revision: 1 (latest)</li>
+<li>Platform version: LATEST</li>
+<li>Cluster: <strong>Workshop-MovingUpTheTechStack</strong></li>
+<li>Service name: <strong>posts</strong></li>
+<li>Number of task: 1</li>
+<li>Scroll down, keep all other setting to default</li>
+<li>Choose <strong>Next step</strong></li>
+</ul>
+</li>
+<li>Under Configure network
+<ul>
+<li>Cluster VPC: From the dropdown select the <strong>(10.0.0.0/16) | movingupstack vpc</strong></li>
+<li>Subnets: choose <strong>Private Subnet One and Private Subnet Two</strong></li>
+<li>Security groups: Edit→Select Existing Security Group→ select <strong>Container Security Group</strong> → <em>Save</em></li>
+<li>Auto-assign public IP: choose <strong>DISABLED</strong></li>
+<li>Scroll down to Load Balancing → choose Application Load Balancer
+<ul>
+<li>verify Load balancer name is <strong>Application-Load-Balancer</strong> from the drop-down
+<ul>
+<li>Note: Hit refresh button if you don’t see the load balancer name</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Container to load balance: → choose posts 5000:5000 and click <strong>Add to load balancer</strong></li>
+</ul>
+</li>
+</ul>
+<p><img src="images/lb.png" alt="lb"></p>
+<ul>
+<li>In this step we are configuring Application Load balancer settings
+<ul>
+<li>Under posts : 5000
+<ul>
+<li>Production listener port: from the dropdown select <strong>80:HTTP</strong></li>
+<li>Target group name: select Create new and keep the default name</li>
+<li>Path pattern: enter <strong>/api/posts*</strong> with Evaluation Order <strong>2</strong></li>
+<li>Health check path: enter <strong>/api/posts/health</strong>
+<img src="images/ctolb.png" alt="ctolb"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Click <strong>Next step</strong></li>
+<li>Keep default setting for Set Auto Scaling → Click <strong>Next step</strong> and Review the configuration</li>
+<li>Click <strong>Create Service</strong></li>
+<li>Click <strong>View Service</strong></li>
+</ul>
+<ul>
+<li>Please repeat the same steps for two other microservices <em>threads</em> and <em>users</em> with increments to the Evaluation Order (threads=3, users=4) Once you created all three ECS services your ECS cluster should have services as shown below.
+<img src="images/ecs_services.png" alt="ecs_service"></li>
+</ul>
+<ul>
+<li>It should only take a few seconds for all your services to start. Ensure the  <em>Status</em> for all the services are <em>ACTIVE</em> as shown in the above screenshot.</li>
+<li>Switch to the <em>Tasks</em> tab next to the <em>Services</em> tab and ensure the Last Status column for all the tasks is in <em>RUNNING</em> state as shown below</li>
+</ul>
+<p><img src="images/ecs_tasks.png" alt="ecs_task"></p>
+<h3 id="what-did-you-do">What did you do?</h3>
+<ul>
+<li>You deployed three microservices <em>posts</em>, <em>threads</em> and <em>users</em> onto AWS ECS Fargate cluster</li>
+<li>Deployed ECS Fargate Service behind the same Application Load Balancer that is being used by the monolith application.</li>
+</ul>
+<h3 id="what-will-you-do-next">What will you do next?</h3>
+<p><strong>Switch over traffic from Monolith to Microservices</strong></p>
+<blockquote>
+<p>Right now, all four of your services (monolith and your three microservices) are running behind the same load balancer. However, all traffic is still flowing to your monolith service. To make the migration from monolith to microservices, you will start routing the traffic to your microservices and stop routing traffic to your monolith.</p>
+</blockquote>
+<h3 id="step-4-edit-application-load-balancer-listener-rules">Step 4: Edit Application Load Balancer Listener rules</h3>
+<ul>
+<li>Navigate to the Load Balancer section of the <a href="https://console.aws.amazon.com/ec2/v2/home?#LoadBalancers:">EC2 Console</a>.</li>
+<li>Locate the Load Balancer named <strong>Application-Load-balancer</strong> and select the checkbox next to it to see the Load Balancer details.</li>
+<li>Select the <strong>Listeners</strong> tab.</li>
+<li>Click on <strong>view/edit rules</strong>
+<img src="images/listener-rule.png" alt="listener-rule"></li>
+<li>Under the <strong>Rules</strong> column, select <strong>Reorder rules</strong> rules.</li>
+<li>Select Rule 1 (Path is/api*) and lower down the priority to Rule 4 by clicking on the Bottom arrow <img src="images/bottom.png" alt="bottom">
+<ul>
+<li><em>Note</em>: This will make sure the requests are routed to the microservices and application is working as expected, before you delete the route to the monolith.</li>
+</ul>
+</li>
+<li>See the following screenshot for an example of the updated rules.
+<img src="images/listener_rules.png" alt="listener_rules"></li>
+</ul>
+<h3 id="what-did-you-do-1">What did you do?</h3>
+<ul>
+<li>You have now fully transitioned backend service from the monolith to microservices, without any downtime!</li>
+</ul>
+<h3 id="what-will-you-do-next-1">What will you do next?</h3>
+<ul>
+<li>Upload Amazon S3 bucket with Static Frontend content which is configured as origin to Amazon CloudFront.</li>
+<li>Update Amazon CloudFront to point to Amazon S3 endpoint with origin access identity so you get the same user experience as the monolith.</li>
+</ul>
+<h3 id="step-5-navigate-to-the-static-content">Step 5: Navigate to the static content</h3>
+<pre tabindex="0"><code>cd ~/environment/moving-up-stack-workshop/resources/code/scenario0/webapp
+
+</code></pre><p>Run the below script to package the static content, upload it to Amazon S3.
+In this example, we are using Cloudfront to server the content.</p>
+<pre tabindex="0"><code>export NODE_OPTIONS=--openssl-legacy-provider
+npm run build
+cd dist
+
+S3_BUCKET_NAME=$(aws cloudformation describe-stacks \
+                --stack-name DecoupletoMicroservices \
+                --query &quot;Stacks[0].Outputs[?OutputKey=='S3BucketName'].OutputValue&quot; \
+                --output text)
+API_URL_VALUE=$(aws cloudformation describe-stacks \
+                --stack-name Monolith \
+                --query &quot;Stacks[0].Outputs[?OutputKey=='LoadBalancerUrl'].OutputValue&quot; \
+                --output text)
+CLOUDFRONT_URL=$(aws cloudformation describe-stacks \
+                --stack-name DecoupletoMicroservices \
+                --query &quot;Stacks[0].Outputs[?OutputKey=='CloudFrontDomainName'].OutputValue&quot; \
+                --output text)
+path=&quot;./js/&quot;
+FILE_NAME=$(ls ${path} | grep -m 1 app.)
+sed -i &quot;s|http://localhost:5000|https://${CLOUDFRONT_URL}|g&quot; &quot;${path}${FILE_NAME}&quot;
+aws s3 sync . s3://${S3_BUCKET_NAME}
+echo https://${CLOUDFRONT_URL}
+</code></pre><ul>
+<li>Copy the CloudFront URL and paste it in the browser to view the WebApp application</li>
+</ul>
+<h3 id="in-this-section-you-modernized-your-aws-infrastructure-by-decouplnig-to-microservices-moved-to-managed-services-such-as-amazon-rds-and-used-amazon-s3-to-host-static-web-content">In this section you modernized your AWS infrastructure by decouplnig to microservices, moved to managed services such as Amazon RDS and used Amazon S3 to host static web content.</h3>
+<blockquote>
+<h3 id="in-the-next-section-we-will-move-up-this-stack-and-see-how-to-modernize-the-infrastructure-to-give-developers-an-easy-way-to-deploy-their-code-using-containers-and-serverless-technologies-leveraging-the-management-tools-governance-and-visibility-needed-to-provide-consistent-standards-and-best-practices">In the next section we will move up this stack and see how to modernize the infrastructure to give developers an easy way to deploy their code using containers and serverless technologies, leveraging the management tools, governance, and visibility needed to provide consistent standards and best practices.</h3>
+</blockquote>
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../scenario1/monolith_application.html" title="Monolith Application"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../scenario2.html" title="Automate management for deployments" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../js/clipboard.min.js"></script>
+    <script src="../js/perfect-scrollbar.min.js"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/featherlight.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../js/modernizr.custom-3.6.0.js"></script>
+    <script src="../js/learn.js"></script>
+    <script src="../js/hugo-learn.js"></script>
+    
+        
+            <script src="../mermaid/mermaid.js"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    <div id = 'kinesisStreamName' title = ""/></div>
+<div id = 'cognitoPoolId' title = ""/></div>
+<div id = 'awsRegion' title = ""/></div>
+<div id = 'contentId' title = ""/></div>
+<div id = 'language' title = "en"/></div>
+<div id = 'versions' title = ""/></div>
+
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+<script src="../js/kinesis.js"></script>
+  </body>
+</html>
+

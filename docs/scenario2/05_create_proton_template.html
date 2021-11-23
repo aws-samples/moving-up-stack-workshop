@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.88.1" />
+    <meta name="description" content="Workshop">
+<meta name="author" content="AWS">
+
+    <link rel="shortcut icon" href="https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico" type="image/ico" />
+<link rel="icon" href="https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico" type="image/ico" />
+
+    <title>Create Proton Templates :: Workshop</title>
+
+    
+    <link href="../css/nucleus.css" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="../css/hybrid.css" rel="stylesheet">
+    <link href="../css/featherlight.min.css" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="../css/auto-complete.css" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css" rel="stylesheet">
+    <link href="../css/theme.css" rel="stylesheet">
+    <link href="../css/tabs.css" rel="stylesheet">
+    <link href="../css/hugo-theme.css" rel="stylesheet">
+    
+    <link href="../css/theme-aws.css" rel="stylesheet">
+    
+    
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="../scenario2/05_create_proton_template.html">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <div>
+    <a id="logo" href='../'>
+        <img style="vertical-align:middle" src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" height="70px" />
+    </a>
+</div>
+
+
+    </div>
+    
+  </div>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started.html" title=" Getting Started" class="dd-item
+        
+        
+        
+        ">
+      <a href="../getting_started.html">
+          <i class='fas fa-home'></i> Getting Started
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/12_connect_to_aws_account.html" title="Connect to AWS Account" class="dd-item ">
+        <a href="../getting_started/12_connect_to_aws_account.html">
+        Connect to AWS Account
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/13_reference_architecture.html" title="Reference Architecture" class="dd-item ">
+        <a href="../getting_started/13_reference_architecture.html">
+        Reference Architecture
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/20_create_a_workspace.html" title="Create a Workspace" class="dd-item ">
+        <a href="../getting_started/20_create_a_workspace.html">
+        Create a Workspace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/25_configure_workspace.html" title="Configure your Workspace" class="dd-item ">
+        <a href="../getting_started/25_configure_workspace.html">
+        Configure your Workspace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/scenario1.html" title="Modernize from monolith to microservices" class="dd-item
+        
+        
+        
+        ">
+      <a href="../scenario1.html">
+          Modernize from monolith to microservices
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario1/monolith_application.html" title="Monolith Application" class="dd-item ">
+        <a href="../scenario1/monolith_application.html">
+        Monolith Application
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario1/modernize_the_monolith.html" title="Modernize the monolith" class="dd-item ">
+        <a href="../scenario1/modernize_the_monolith.html">
+        Modernize the monolith
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/scenario2.html" title="Automate management for deployments" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="../scenario2.html">
+          Automate management for deployments
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario2/05_create_proton_template.html" title="Create Proton Templates" class="dd-item active">
+        <a href="../scenario2/05_create_proton_template.html">
+        Create Proton Templates
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario2/10_create_environment.html" title="Create Proton Environment" class="dd-item ">
+        <a href="../scenario2/10_create_environment.html">
+        Create Proton Environment
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario2/15_create_service.html" title="Create Proton Service" class="dd-item ">
+        <a href="../scenario2/15_create_service.html">
+        Create Proton Service
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/scenario3.html" title="Increase application visibility and governance" class="dd-item
+        
+        
+        
+        ">
+      <a href="../scenario3.html">
+          Increase application visibility and governance
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario3/05_map_env_resources_with_appregistry.html" title="Creating AppRegistry application with Proton" class="dd-item ">
+        <a href="../scenario3/05_map_env_resources_with_appregistry.html">
+        Creating AppRegistry application with Proton
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario3/10_map_svc_resources_with_appregistry.html" title="Auto-register resources with AppRegistry" class="dd-item ">
+        <a href="../scenario3/10_map_svc_resources_with_appregistry.html">
+        Auto-register resources with AppRegistry
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario3/15_query_appregistry_application_metadata.html" title="Query AppRegistry application metadata" class="dd-item ">
+        <a href="../scenario3/15_query_appregistry_application_metadata.html">
+        Query AppRegistry application metadata
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/cleanup.html" title="Cleanup" class="dd-item
+        
+        
+        
+        ">
+      <a href="../cleanup.html">
+          Cleanup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li>
+                  <a class="padding" href="https://github.com/aws-samples/moving-up-stack-workshop"><i class='fab fa-github'></i> GitHub Project</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    <h5 class="copyright">&copy; 2021 Amazon Web Services, Inc. or its Affiliates. All rights reserved.<h5>
+</left>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../'>Moving up the technology stack as you modernize applications</a> > <a href='../scenario2.html'>Automate management for deployments</a> > Create Proton Templates
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-are-we-going-to-do">What are we going to do?</a></li>
+    <li><a href="#step-by-step-guide">Step by step guide</a>
+      <ul>
+        <li><a href="#configure-iam-role-s3-bucket-and-codestar-connections-connection">Configure IAM Role, S3 Bucket, and CodeStar Connections Connection</a></li>
+      </ul>
+    </li>
+    <li><a href="#create-a-codestar-connection">Create a CodeStar Connection</a></li>
+    <li><a href="#register-an-environment-template">Register an Environment Template</a></li>
+    <li><a href="#register-the-service-templates">Register the Service Templates</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+
+            <h1>
+              
+              Create Proton Templates
+            </h1>
+
+
+        
+
+
+<h2 id="what-are-we-going-to-do">What are we going to do?</h2>
+<p>In this section we&rsquo;ll use the aws cli to configure proton templates for our environment and microservices.</p>
+<h2 id="step-by-step-guide">Step by step guide</h2>
+<p>Start by logging into your Cloud9 workstations.</p>
+<!--
+Clone the repository and open the folder.
+
+```
+cd ~/environment
+git clone git@ssh.gitlab.aws.dev:diegodal/workshop-movingupstack.git
+cd moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
+```
+-->
+<p>Set your default variables</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export AWS_DEFAULT_REGION<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r <span style="color:#e6db74">&#39;.region&#39;</span><span style="color:#66d9ef">)</span>
+export ACCOUNT_ID<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>aws sts get-caller-identity --query Account --output text<span style="color:#e6db74">`</span>
+
+</code></pre></div><p>Next, we&rsquo;ll navigate to our template folder.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
+</code></pre></div><h3 id="configure-iam-role-s3-bucket-and-codestar-connections-connection">Configure IAM Role, S3 Bucket, and CodeStar Connections Connection</h3>
+<p>Before you register your templates and deploy your environments and services, you will need to create an Amazon IAM role so that AWS Proton can manage resources in your AWS account, an Amazon S3 bucket to store your templates, and a CodeStar Connections connection to pull and deploy your application code.</p>
+<p>Create the S3 bucket to store your templates:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CONSTRAINT_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;--region </span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74"> --create-bucket-configuration LocationConstraint=</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;us-east-1&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span> CONSTRAINT_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> ; <span style="color:#66d9ef">fi</span>
+
+aws s3api create-bucket --bucket <span style="color:#e6db74">&#34;proton-cli-templates-</span><span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">${</span>CONSTRAINT_ARGS<span style="color:#e6db74">}</span>
+</code></pre></div><p>Create the IAM role that Proton will assume to provision resources and manage AWS CloudFormation stacks in your AWS account.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws iam create-role <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --role-name ProtonServiceRole <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --assume-role-policy-document file://./policies/proton-service-assume-policy.json
+
+aws iam attach-role-policy <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --role-name ProtonServiceRole <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+</code></pre></div><p>Then, allow Proton to use that role to provision resources for your services continuous delivery pipelines:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws proton update-account-settings <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --pipeline-service-role-arn <span style="color:#e6db74">&#34;arn:aws:iam::</span><span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">:role/ProtonServiceRole&#34;</span>
+</code></pre></div>
+<div class="notices tip" ><p><em><strong>What did we just do?</strong></em>
+We just created an S3 bucket in our account.
+Then we created an IAM Role for Proton and gave the service permission to use it.</p>
+</div>
+
+<h2 id="create-a-codestar-connection">Create a CodeStar Connection</h2>
+<p>AWS Proton uses CodeStar Connections to connect to  your application code stored in a GitHub source code repository.<br>
+This connection allows CodePipeline to pull your application source code before building and deploying the code to your Proton service.
+To complete this section, you will need a free tier Github Account.
+You should also be comfortable forking Github Repositories.
+Navigate to <a href="https://console.aws.amazon.com/codesuite/settings/connections?home?#Home">CodeStar Connections console</a>
+to create a new source code connection.</p>
+
+<div class="notices tip" ><p><em><strong>Region Matters</strong></em>
+Please make sure you are in the correct region when creating the CodeStar Connection.</p>
+</div>
+
+<p>Next click on create connection.
+Select GitHub, and give the connection a name of <code>Github</code>.
+Then click on Connect to GitHub.</p>
+<p><img src="images/05_codestar1.png" alt="CodeStarConnection"></p>
+<p>On the next screen choose install new app.
+If necessary login to your GitHub account.
+Follow the prompts to grant CodeStar permission to your GitHub repositories.</p>
+
+<div class="notices tip" ><p><em><strong>If you get stuck</strong></em>
+Please ask a moderator for help or review the <a href="https://docs.aws.amazon.com/dtconsole/latest/userguide/connections-create-github.html#connections-create-github-cli">CodeStar Connection documentation</a>.</p>
+</div>
+
+<p>Finally before proceeding, fork the following GitHub repository to your account.
+If you need more information on how to fork a repository, please see <a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">this link</a></p>
+<ul>
+<li><a href="https://github.com/aws-samples/moving-up-stack-workshop-apis">moving-up-stack-workshop-apis</a></li>
+</ul>
+<p>This repository has all of our broken up microservices.
+To simplify the workshop, we have used a single repository with multiple branches.
+In a production environment, you should follow best practices and have 1 microservice per repository.</p>
+<h2 id="register-an-environment-template">Register an Environment Template</h2>
+<p>In this section we start uploading our first template to Proton.
+This template is an environment template that will provision our VPC with 4 subnets (2 public, 2 private), an ECS Cluster, and Application Load Balancer.</p>
+<p>First, create an environment template, which will contain all of the environment template&rsquo;s versions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">  aws proton create-environment-template <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --name <span style="color:#e6db74">&#34;Fargate-Public-Private-VPC&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --display-name <span style="color:#e6db74">&#34;Fargate Public and Private VPC&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --description <span style="color:#e6db74">&#34;VPC with Public and Private Access and ECS Cluster&#34;</span>
+</code></pre></div><p>Now create a version which contains the contents of the sample environment template. Compress the sample template files and register the version:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar -zcvf far-pubpriv-env-template.tar.gz environment/
+
+aws s3 cp far-pubpriv-env-template.tar.gz s3://proton-cli-templates-<span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span>/far-pubpriv-env-template.tar.gz
+
+rm far-pubpriv-env-template.tar.gz
+
+aws proton create-environment-template-version <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --template-name <span style="color:#e6db74">&#34;Fargate-Public-Private-VPC&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --source s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{bucket=proton-cli-templates-</span><span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">,key=far-pubpriv-env-template.tar.gz}&#34;</span>
+</code></pre></div>
+<div class="notices info" ><p>If you like to examine the details of the template, take a look at the Cloudformation in the &ldquo;~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/environment&rdquo; folder.</p>
+</div>
+
+<p>You can now publish the environment template version, making it available for users in your AWS account to create Proton environments.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws proton update-environment-template-version <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --template-name <span style="color:#e6db74">&#34;Fargate-Public-Private-VPC&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --major-version <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --minor-version <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --status <span style="color:#e6db74">&#34;PUBLISHED&#34;</span>
+</code></pre></div>
+<div class="notices tip" ><p><em><strong>What did we just do?</strong></em>
+We just created a Proton environment template.
+Open the Proton console and check that your new template is created.</p>
+</div>
+
+<p>Let&rsquo;s see the environment template that we just created.
+Open the <a href="https://console.aws.amazon.com/proton/home?">Proton Console</a>.
+From the menu on the left click Environment templates under Templates.
+Click on the newly created &ldquo;Fargate Public and Private VPC&rdquo; template.</p>
+<p><img src="images/05_environment-template.png" alt="ProtonEnvironmentTemplate"></p>
+<p>When you open the template to see more details, your template should look something like below:</p>
+<p><img src="images/05_environment-template-details.png" alt="ProtonEnvironmentTemplateDetails"></p>
+<h2 id="register-the-service-templates">Register the Service Templates</h2>
+<p>Next we&rsquo;re going to register the services templates, which contains all the resources required to provision an ECS Fargate services behind a load balancer, a dedicated ElastiCache cluster, an RDS instance as well as a continuous delivery pipeline using AWS CodePipeline for each.</p>
+<p>Start by creating the service template.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">  aws proton create-service-template <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --name <span style="color:#e6db74">&#34;Fargate-Public-LoadBalanced-Service-Redis-MySQL&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --display-name <span style="color:#e6db74">&#34;Fargate Public LoadBalanced Service with Redis and MySQL&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --description <span style="color:#e6db74">&#34;Fargate Service with an Application Load Balancer, Redis and MySQL&#34;</span>
+</code></pre></div><p>Now create a version which contains the contents of the sample service template. Compress the sample template files and register the version:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar -zcvf farRedMy-svc-template.tar.gz service/
+
+aws s3 cp farRedMy-svc-template.tar.gz s3://proton-cli-templates-<span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span>/farRedMy-svc-template.tar.gz
+
+rm farRedMy-svc-template.tar.gz
+
+aws proton create-service-template-version <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --template-name <span style="color:#e6db74">&#34;Fargate-Public-LoadBalanced-Service-Redis-MySQL&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --source s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{bucket=proton-cli-templates-</span><span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">,key=farRedMy-svc-template.tar.gz}&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --compatible-environment-templates <span style="color:#e6db74">&#39;[{&#34;templateName&#34;:&#34;Fargate-Public-Private-VPC&#34;,&#34;majorVersion&#34;:&#34;1&#34;}]&#39;</span>
+</code></pre></div>
+<div class="notices info" ><p>If you like to examine the details of the template, take a look at the Cloudformation in the &ldquo;~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/service&rdquo; folder.</p>
+</div>
+
+<p>You can now publish the Public service template version, making it available for users in your AWS account to create Proton services.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws proton update-service-template-version <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --template-name <span style="color:#e6db74">&#34;Fargate-Public-LoadBalanced-Service-Redis-MySQL&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --major-version <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --minor-version <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --status <span style="color:#e6db74">&#34;PUBLISHED&#34;</span>
+</code></pre></div>
+<div class="notices tip" ><p><em><strong>What did we just do?</strong></em>
+We just created a Proton service template.
+Open the Proton console and check that your new template is created.</p>
+</div>
+
+<p>Lets see the service template that we just created.
+Open the <a href="https://console.aws.amazon.com/proton/home?">Proton Console</a>.
+From the menu on the left click Service templates under Templates.
+Click on the newly created &ldquo;Fargate Public LoadBalanced Service with Redis and MySQL&rdquo; template.</p>
+<p><img src="images/05_service-template.png" alt="ProtonServiceTemplate"></p>
+<p>Your template should look something like below:</p>
+<p><img src="images/05_service-template-details.png" alt="ProtonServiceTemplateDetails"></p>
+<p>Continue to the next section to provision an environment from this template.</p>
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../scenario2.html" title="Automate management for deployments"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../scenario2/10_create_environment.html" title="Create Proton Environment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../js/clipboard.min.js"></script>
+    <script src="../js/perfect-scrollbar.min.js"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/featherlight.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../js/modernizr.custom-3.6.0.js"></script>
+    <script src="../js/learn.js"></script>
+    <script src="../js/hugo-learn.js"></script>
+    
+        
+            <script src="../mermaid/mermaid.js"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    <div id = 'kinesisStreamName' title = ""/></div>
+<div id = 'cognitoPoolId' title = ""/></div>
+<div id = 'awsRegion' title = ""/></div>
+<div id = 'contentId' title = ""/></div>
+<div id = 'language' title = "en"/></div>
+<div id = 'versions' title = ""/></div>
+
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+<script src="../js/kinesis.js"></script>
+  </body>
+</html>
+

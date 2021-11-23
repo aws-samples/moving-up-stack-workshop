@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> Getting Started on Workshop</title>
+    <link>/getting_started.html</link>
+    <description>Recent content in  Getting Started on Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language><atom:link href="/getting_started/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Connect to AWS Account</title>
+      <link>/getting_started/12_connect_to_aws_account.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/getting_started/12_connect_to_aws_account.html</guid>
+      <description>The following steps should be executed to apply credits if you are using your own AWS account. 1. Sign into your AWS account and click here
+ 📝 Note: Please ensure you enter the promotion code in the AWS account where you will run this workshop.
+   Click on Redeem credit at the top right of the console.
+  Enter the Promotion code issued to you by the AWS employee</description>
+    </item>
+    
+    <item>
+      <title>Reference Architecture</title>
+      <link>/getting_started/13_reference_architecture.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/getting_started/13_reference_architecture.html</guid>
+      <description>Reference Architecture Current Planned </description>
+    </item>
+    
+    <item>
+      <title>Create a Workspace</title>
+      <link>/getting_started/20_create_a_workspace.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/getting_started/20_create_a_workspace.html</guid>
+      <description>A list of supported browsers for AWS Cloud9 is found here.
+ Ad blockers, javascript disablers, and tracking blockers should be disabled for the cloud9 domain, or connecting to the workspace might be impacted. Cloud9 requires third-party-cookies. You can whitelist the specific domains.
+ Launch Cloud9 in the region selected previously Navigate to the Cloud9 console.
+ Select Create environment Name it MovingUpTheStackWorkshop, click Next step. Since we only need to access our Cloud9 environment via web browser, please select the Create a new no-ingress EC2 instance for environment (access via Systems Manager) under the Environment Type.</description>
+    </item>
+    
+    <item>
+      <title>Configure your Workspace</title>
+      <link>/getting_started/25_configure_workspace.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/getting_started/25_configure_workspace.html</guid>
+      <description>Follow this deep link to create an IAM role with Administrator access.
+  Confirm that AWS service and EC2 are selected, then click Next: Permissions to view permissions.
+  Confirm that AdministratorAccess is checked, then click Next: Tags to assign tags.
+  Take the defaults, and click Next: Review to review.
+  Enter movingupworkshop-admin for the Name, and click Create role.
+  Click the grey circle button (in top right corner) and select Manage EC2 Instance.</description>
+    </item>
+    
+  </channel>
+</rss>
