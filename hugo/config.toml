@@ -42,6 +42,6 @@ hrefTargetBlank = true
       unsafe = true
 
 [[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bullhorn'></i> Session Feedback"
-url = "mailto:email@amazon.com?subject=Contact"
+name = "<i class='fab fa-github'></i> GitHub Project"
+url = "https://github.com/aws-samples/moving-up-stack-workshop"
 weight = 10
