@@ -20,8 +20,8 @@ On the ```Configure service``` screen.
  - Give the service a name of ```api-posts```.
  - Under service repository settings use:
     - Repository Connection: ```Github```
-    - Repository ID: ```workshop-movingupstack-api-posts```
-    - Branch Name: ```main```
+    - Repository ID: ```moving-up-stack-workshop-apis```
+    - Branch Name: ```posts```
 
 
 Then click the ```Next``` button.
@@ -94,8 +94,8 @@ CONNECTION_ARN=$(aws codestar-connections list-connections \
 aws proton create-service \
   --name "api-threads" \
   --repository-connection-arn ${CONNECTION_ARN} \
-  --repository-id "workshop-movingupstack-api-threads" \
-  --branch "main" \
+  --repository-id "moving-up-stack-workshop-apis" \
+  --branch "threads" \
   --template-name Fargate-Public-LoadBalanced-Service-Redis-MySQL \
   --template-major-version 1 \
   --spec file://api-threads.yaml
@@ -127,8 +127,8 @@ EOF
 aws proton create-service \
   --name "api-users" \
   --repository-connection-arn ${CONNECTION_ARN} \
-  --repository-id "workshop-movingupstack-api-users" \
-  --branch "main" \
+  --repository-id "moving-up-stack-workshop-apis" \
+  --branch "users" \
   --template-name Fargate-Public-LoadBalanced-Service-Redis-MySQL \
   --template-major-version 1 \
   --spec file://api-users.yaml

@@ -49,9 +49,9 @@ Resources:
             - Name: DB_HOST
               Value: !GetAtt DatabaseInstance.Endpoint.Address
             - Name: DB_USER
-              Value: {{ '!Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"' }}
+              Value: !Join ['', ['{{ '{{' }}resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:username{{ '}}' }}' ]]
             - Name: DB_PASSWORD
-              Value: {{  '!Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"' }}
+              Value: !Join ['', ['{{ '{{' }}resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:password{{ '}}' }}' ]]
             - Name: DATABASE
               Value: '{{service_instance.inputs.DBName}}'
           Image: '{{service_instance.inputs.image}}'
@@ -314,8 +314,8 @@ Resources:
     Properties:
       Engine: aurora
       DBClusterIdentifier: '{{service_instance.name}}-Cluster'
-      MasterUsername: {{  '!Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"' }}  
-      MasterUserPassword: {{  '!Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"' }}  
+      MasterUsername: !Join ['', ['{{ '{{' }}resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:username{{ '}}' }}' ]]
+      MasterUserPassword: !Join ['', ['{{ '{{' }}resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:password{{ '}}' }}' ]]
       DBSubnetGroupName: !Ref "DatabaseSubnetGroup"
       VpcSecurityGroupIds: 
         - !Ref DatabaseSecurityGroup

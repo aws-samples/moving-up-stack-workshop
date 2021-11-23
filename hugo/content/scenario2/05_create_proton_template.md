@@ -103,12 +103,14 @@ Please ask a moderator for help or review the [CodeStar Connection documentation
 {{% /notice %}}
 
 
-Finally before proceeding, fork the following GitHub repositories to your account.
+Finally before proceeding, fork the following GitHub repository to your account.
 If you need more information on how to fork a repository, please see [this link](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 
-- [workshop-movingupstack-api-posts](https://github.com/dchristian3188/workshop-movingupstack-api-posts)
-- [workshop-movingupstack-api-threads](https://github.com/dchristian3188/workshop-movingupstack-api-threads)
-- [workshop-movingupstack-api-users](https://github.com/dchristian3188/workshop-movingupstack-api-users)
+- [moving-up-stack-workshop-apis](https://github.com/aws-samples/moving-up-stack-workshop-apis)
+
+This repository has all of our broken up microservices. 
+To simplify the workshop, we have used a single repository with multiple branches.
+In a production environment, you should follow best practices and have 1 microservice per repository.
 
 ## Register an Environment Template
 
