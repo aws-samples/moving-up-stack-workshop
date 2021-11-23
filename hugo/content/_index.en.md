@@ -25,15 +25,18 @@ Developers, Sysdev, Solutions Architect
 ### Required Skills:
 - Connecting to Linux servers using Putty
 - Basic Linux Bash commands
-- AWS Console
-- Basic DNS and domain name resolution
-- The following AWS Services (EC2, CloudFormation)
+- AWS Console UI
+- The following AWS Services (EC2, CloudFormation, Application Loadbalancer)
 
 ### Materials needed:
 
 * A computer (Linux, Windows or Mac)
 * Internet connectivity
+* Github account
+* AWS account 
 
-### By the end of this workshop, you will:
+### By the end of this workshop, you will learn:
 
-1. Add list here
+1. How to modernize a monolith architecture by decoupling into micro-services.
+2. Automate and deploy a governance model into infrastructure resources
+3. How to increase application visibility and goverance.
