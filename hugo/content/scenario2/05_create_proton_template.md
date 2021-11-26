@@ -20,14 +20,6 @@ cd moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-
 ```
 -->
 
-Set your default variables
-
-```bash
-export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
-
-```
-
 Next, we'll navigate to our template folder.
 
 ```bash
