@@ -26,13 +26,13 @@ Navigate to the [Cloud9 console](https://console.aws.amazon.com/cloud9).
 When it comes up, customize the environment by:
 
 - Closing the **Welcome tab**
-![cloud9-1](images/cloud9-1.png)
+  ![cloud9-1](images/cloud9-1.png)
 - Opening a new **terminal** tab in the main work area
-![cloud9-2](images/cloud9-2.png)
+  ![cloud9-2](images/cloud9-2.png)
 - Closing the lower work area
-![cloud9-3](images/cloud9-3.png)
+  ![cloud9-3](images/cloud9-3.png)
 - Your workspace should now look like this
-![cloud9-4](images/cloud9-4.png)
+  ![cloud9-4](images/cloud9-4.png)
 
 ### Update tools and dependencies
 
@@ -43,6 +43,11 @@ The instructions in this workshop assume you are using a bash shell in a linux-l
 Copy/Paste the following code in your cloud9 terminal (you can paste the whole block at once).
 
 ```bash
+cat <<EOF >> ~/.bashrc
+export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
+export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
+EOF
+
 sudo yum update -y
 sudo yum -y install jq gettext bash-completion moreutils
 

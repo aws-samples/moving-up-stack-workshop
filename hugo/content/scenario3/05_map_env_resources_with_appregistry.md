@@ -35,12 +35,6 @@ cd ~/environment/moving-up-stack-workshop/resources/code/
 cp -r scenario2/loadbalanced-fargate-redis-mysql scenario3/loadbalanced-fargate-redis-mysql
 ```
 
-Set your default variables
-```shell
-export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
-```
-
 Navigate to `environment/infrastructure` and open `cloudformation.yaml` by running the command below.
 ```shell
 cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/infrastructure
