@@ -13,11 +13,14 @@ Example corp is on a modernization journey, they are already in AWS cloud using 
 
 ### The Task
 
-> We are going to decouple the monolith application into micro-services. Each layer of a monolith three- tier web architecture will be moved to a managed service for using right service for the right job of Example corp. 
+> We are going to decouple the monolith application into micro-services. Each layer of a monolith three- tier web architecture will be moved to a managed service for using right service for the right job of Example corp. We will use Cloudfront for content delivery of static and dynamic assets.
 
-We are going to 
+You can follow these steps to do this:
 
-*  Move the application layer from running in docker container on EC2 to running the container on Elastic   Container Service for AWS Fargate
-*  Move the MySQL database from EC2 and EBS to Amazon RDS MySQL. 
-* Migrate from self managed Redis Cache to Amazon Elasticache service.
-* Use Cloudfront for content delivery of static and dynamic assets
+* Deploy Cloudformation template to create the AWS managed service infrastructure. 
+* Migrate the web application traffic to micro services.
+* Move static assests to Amazon S3 which will act as origin for CloudFront.
+
+{{% notice info %}}
+If you need help at any time please raise your hand.
+{{% /notice %}}
