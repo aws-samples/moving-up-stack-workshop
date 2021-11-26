@@ -14,8 +14,7 @@
       <guid>/scenario2/05_create_proton_template.html</guid>
       <description>What are we going to do? In this section we&amp;rsquo;ll use the aws cli to configure proton templates for our environment and microservices.
 Step by step guide Start by logging into your Cloud9 workstations.
-Set your default variables
-export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r &amp;#39;.region&amp;#39;) export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text` Next, we&amp;rsquo;ll navigate to our template folder.
+Next, we&amp;rsquo;ll navigate to our template folder.
 cd ~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/ Configure IAM Role, S3 Bucket, and CodeStar Connections Connection Before you register your templates and deploy your environments and services, you will need to create an Amazon IAM role so that AWS Proton can manage resources in your AWS account, an Amazon S3 bucket to store your templates, and a CodeStar Connections connection to pull and deploy your application code.</description>
     </item>
     

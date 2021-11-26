@@ -621,11 +621,7 @@ git clone git@ssh.gitlab.aws.dev:diegodal/workshop-movingupstack.git
 cd moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
 ```
 -->
-<p>Set your default variables</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export AWS_DEFAULT_REGION<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r <span style="color:#e6db74">&#39;.region&#39;</span><span style="color:#66d9ef">)</span>
-export ACCOUNT_ID<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>aws sts get-caller-identity --query Account --output text<span style="color:#e6db74">`</span>
-
-</code></pre></div><p>Next, we&rsquo;ll navigate to our template folder.</p>
+<p>Next, we&rsquo;ll navigate to our template folder.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/environment/moving-up-stack-workshop/resources/code/scenario2/loadbalanced-fargate-redis-mysql/
 </code></pre></div><h3 id="configure-iam-role-s3-bucket-and-codestar-connections-connection">Configure IAM Role, S3 Bucket, and CodeStar Connections Connection</h3>
 <p>Before you register your templates and deploy your environments and services, you will need to create an Amazon IAM role so that AWS Proton can manage resources in your AWS account, an Amazon S3 bucket to store your templates, and a CodeStar Connections connection to pull and deploy your application code.</p>

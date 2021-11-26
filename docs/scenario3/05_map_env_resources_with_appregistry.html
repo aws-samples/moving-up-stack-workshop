@@ -625,9 +625,6 @@ continue with the Proton services.</p>
 <p>Prepare folder to update Proton templates.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/
 cp -r scenario2/loadbalanced-fargate-redis-mysql scenario3/loadbalanced-fargate-redis-mysql
-</code></pre></div><p>Set your default variables</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">export AWS_DEFAULT_REGION<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r <span style="color:#e6db74">&#39;.region&#39;</span><span style="color:#66d9ef">)</span>
-export ACCOUNT_ID<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>aws sts get-caller-identity --query Account --output text<span style="color:#e6db74">`</span>
 </code></pre></div><p>Navigate to <code>environment/infrastructure</code> and open <code>cloudformation.yaml</code> by running the command below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/infrastructure
 

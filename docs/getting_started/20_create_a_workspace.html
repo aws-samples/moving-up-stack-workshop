@@ -640,7 +640,12 @@ Cloud9 requires third-party-cookies. You can whitelist the <a href="https://docs
 </div>
 
 <p>Copy/Paste the following code in your cloud9 terminal (you can paste the whole block at once).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo yum update -y
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#e6db74">&lt;&lt;EOF &gt;&gt; ~/.bashrc
+</span><span style="color:#e6db74">export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r &#39;.region&#39;)
+</span><span style="color:#e6db74">export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
+</span><span style="color:#e6db74">EOF</span>
+
+sudo yum update -y
 sudo yum -y install jq gettext bash-completion moreutils
 
 <span style="color:#75715e"># Upgrade AWS CLI</span>
