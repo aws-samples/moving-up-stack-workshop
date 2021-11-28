@@ -614,10 +614,6 @@
 <pre tabindex="0"><code>cd ~/environment
 git clone https://github.com/aws-samples/moving-up-stack-workshop
 cd moving-up-stack-workshop
-</code></pre><p>Set your default variables</p>
-<pre tabindex="0"><code>export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
-
 </code></pre><ul>
 <li>Navigate to CloudFormation file and deploy the CloudFormation template scenario0_infrastructure.yml</li>
 </ul>
