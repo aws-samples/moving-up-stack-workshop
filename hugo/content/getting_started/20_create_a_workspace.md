@@ -47,7 +47,7 @@ cat <<EOF >> ~/.bashrc
 export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
 EOF
-
+source ~/.bashrc
 sudo yum update -y
 sudo yum -y install jq gettext bash-completion moreutils
 
