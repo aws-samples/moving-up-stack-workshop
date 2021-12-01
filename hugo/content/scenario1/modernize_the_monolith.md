@@ -149,7 +149,7 @@ Run the below script to package the static content, upload it to Amazon S3.
 In this example, we are using Cloudfront to server the content.
 
 ```
-export NODE_OPTIONS=--openssl-legacy-provider
+npm install
 npm run build
 cd dist
 
