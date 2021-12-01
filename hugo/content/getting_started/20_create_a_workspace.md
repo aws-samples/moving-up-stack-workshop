@@ -43,13 +43,14 @@ The instructions in this workshop assume you are using a bash shell in a linux-l
 Copy/Paste the following code in your cloud9 terminal (you can paste the whole block at once).
 
 ```bash
+sudo yum update -y
+sudo yum -y install jq gettext bash-completion moreutils
+
 cat <<EOF >> ~/.bashrc
 export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
 EOF
 source ~/.bashrc
-sudo yum update -y
-sudo yum -y install jq gettext bash-completion moreutils
 
 # Upgrade AWS CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
