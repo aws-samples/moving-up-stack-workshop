@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.88.1" />
+    <meta name="description" content="Workshop">
+<meta name="author" content="AWS">
+
+    <link rel="shortcut icon" href="https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico" type="image/ico" />
+<link rel="icon" href="https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico" type="image/ico" />
+
+    <title>Creating AppRegistry application with Proton :: Workshop</title>
+
+    
+    <link href="../css/nucleus.css" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="../css/hybrid.css" rel="stylesheet">
+    <link href="../css/featherlight.min.css" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="../css/auto-complete.css" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css" rel="stylesheet">
+    <link href="../css/theme.css" rel="stylesheet">
+    <link href="../css/tabs.css" rel="stylesheet">
+    <link href="../css/hugo-theme.css" rel="stylesheet">
+    
+    <link href="../css/theme-aws.css" rel="stylesheet">
+    
+    
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="../scenario3/05_map_env_resources_with_appregistry.html">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <div>
+    <a id="logo" href='../'>
+        <img style="vertical-align:middle" src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" height="70px" />
+    </a>
+</div>
+
+
+    </div>
+    
+  </div>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting_started.html" title=" Getting Started" class="dd-item
+        
+        
+        
+        ">
+      <a href="../getting_started.html">
+          <i class='fas fa-home'></i> Getting Started
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/12_connect_to_aws_account.html" title="Connect to AWS Account" class="dd-item ">
+        <a href="../getting_started/12_connect_to_aws_account.html">
+        Connect to AWS Account
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/13_reference_architecture.html" title="Reference Architecture" class="dd-item ">
+        <a href="../getting_started/13_reference_architecture.html">
+        Reference Architecture
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/20_create_a_workspace.html" title="Create a Workspace" class="dd-item ">
+        <a href="../getting_started/20_create_a_workspace.html">
+        Create a Workspace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting_started/25_configure_workspace.html" title="Configure your Workspace" class="dd-item ">
+        <a href="../getting_started/25_configure_workspace.html">
+        Configure your Workspace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/scenario1.html" title="Modernize from monolith to microservices" class="dd-item
+        
+        
+        
+        ">
+      <a href="../scenario1.html">
+          Modernize from monolith to microservices
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario1/monolith_application.html" title="Monolith Application" class="dd-item ">
+        <a href="../scenario1/monolith_application.html">
+        Monolith Application
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario1/modernize_the_monolith.html" title="Modernize the monolith" class="dd-item ">
+        <a href="../scenario1/modernize_the_monolith.html">
+        Modernize the monolith
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/scenario2.html" title="Automate management for deployments" class="dd-item
+        
+        
+        
+        ">
+      <a href="../scenario2.html">
+          Automate management for deployments
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario2/05_create_proton_template.html" title="Create Proton Templates" class="dd-item ">
+        <a href="../scenario2/05_create_proton_template.html">
+        Create Proton Templates
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario2/10_create_environment.html" title="Create Proton Environment" class="dd-item ">
+        <a href="../scenario2/10_create_environment.html">
+        Create Proton Environment
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario2/15_create_service.html" title="Create Proton Service" class="dd-item ">
+        <a href="../scenario2/15_create_service.html">
+        Create Proton Service
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/scenario3.html" title="Increase application visibility and governance" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="../scenario3.html">
+          Increase application visibility and governance
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario3/05_map_env_resources_with_appregistry.html" title="Creating AppRegistry application with Proton" class="dd-item active">
+        <a href="../scenario3/05_map_env_resources_with_appregistry.html">
+        Creating AppRegistry application with Proton
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario3/10_map_svc_resources_with_appregistry.html" title="Auto-register resources with AppRegistry" class="dd-item ">
+        <a href="../scenario3/10_map_svc_resources_with_appregistry.html">
+        Auto-register resources with AppRegistry
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/scenario3/15_query_appregistry_application_metadata.html" title="Query AppRegistry application metadata" class="dd-item ">
+        <a href="../scenario3/15_query_appregistry_application_metadata.html">
+        Query AppRegistry application metadata
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/cleanup.html" title="Cleanup" class="dd-item
+        
+        
+        
+        ">
+      <a href="../cleanup.html">
+          Cleanup
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li>
+                  <a class="padding" href="https://github.com/aws-samples/moving-up-stack-workshop"><i class='fab fa-github'></i> GitHub Project</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    <h5 class="copyright">&copy; 2021 Amazon Web Services, Inc. or its Affiliates. All rights reserved.<h5>
+</left>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../'>Moving up the technology stack as you modernize applications</a> > <a href='../scenario3.html'>Increase application visibility and governance</a> > Creating AppRegistry application with Proton
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#update-aws-proton-environment-template-and-deploy-the-new-version">Update AWS Proton environment template and deploy the new version</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+
+            <h1>
+              
+              Creating AppRegistry application with Proton
+            </h1>
+
+
+        
+
+
+<h4 id="what-are-we-going-to-do">What are we going to do?</h4>
+<h4 id="we-are-going-to-perform-the-following-steps">We are going to perform the following steps:</h4>
+<ul>
+<li>Update environment template and deploy new version so resources will be auto-registered and metadata collected</li>
+<li>Validate that environment resources and metadata are associated with the AppRegistry application</li>
+</ul>
+<h4 id="step-by-step-guide">Step-by-step guide</h4>
+<p>Here are the steps you need to follow to &ldquo;Create Proton environment template for AppRegistry application&rdquo;.</p>
+<hr>
+<p>AWS Service Catalog AppRegistry allows you to create a repository of your applications and associated resources.
+You can then define and manage your application metadata. This allows you to understand the context of your
+applications and resources across your environments.</p>
+<p>AppRegistry provides a way to group your applications and application resources. You define applications within the
+AppRegistry by providing a name, description, associations to CloudFormation stacks, and associations to
+application metadata. We&rsquo;ll start by associating Proton environment resources and it&rsquo;s metadata, and then
+continue with the Proton services.</p>
+<h2 id="update-aws-proton-environment-template-and-deploy-the-new-version">Update AWS Proton environment template and deploy the new version</h2>
+<p>Prepare folder to update Proton templates.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/
+cp -r scenario2/loadbalanced-fargate-redis-mysql scenario3/loadbalanced-fargate-redis-mysql
+</code></pre></div><p>Navigate to <code>environment/infrastructure</code> and open <code>cloudformation.yaml</code> by running the command below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/infrastructure
+
+<span style="color:#75715e"># open file in Cloud9 editor</span>
+c9 cloudformation.yaml
+</code></pre></div><p>Add new AWS resources under <code>Resources</code>.</p>
+
+<div class="notices tip" ><p>Please verify the indentation is correct when pasting into the yaml file.
+Also, please make sure you save the file before moving to the next step.</p>
+</div>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">AppRegistryApp</span>:
+  <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">AWS::ServiceCatalogAppRegistry::Application</span>
+  <span style="color:#f92672">Properties</span>:
+    <span style="color:#f92672">Description</span>: <span style="color:#e6db74">&#34;AppRegistry application created with CloudFormation&#34;</span>
+    <span style="color:#f92672">Name</span>: <span style="color:#e6db74">&#34;{{ environment.inputs.application_name }}&#34;</span>
+<span style="color:#f92672">AppRegistryResourceAssociation</span>:
+  <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">AWS::ServiceCatalogAppRegistry::ResourceAssociation</span>
+  <span style="color:#f92672">Properties</span>:
+    <span style="color:#f92672">Application</span>: !<span style="color:#ae81ff">GetAtt AppRegistryApp.Id</span>
+    <span style="color:#f92672">Resource</span>: !<span style="color:#ae81ff">Ref AWS::StackName</span>
+    <span style="color:#f92672">ResourceType</span>: <span style="color:#ae81ff">CFN_STACK</span>
+  <span style="color:#f92672">DependsOn</span>:
+    - <span style="color:#ae81ff">AppRegistryApp</span>
+<span style="color:#f92672">AppRegistryAttributeGroup</span>:
+  <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">AWS::ServiceCatalogAppRegistry::AttributeGroup</span>
+  <span style="color:#f92672">Properties</span>:
+    <span style="color:#f92672">Attributes</span>: {
+      <span style="color:#f92672">&#34;ApplicationName&#34;: </span><span style="color:#e6db74">&#34;{{ environment.inputs.application_name }}&#34;</span>,
+      <span style="color:#f92672">&#34;CostCenter&#34;: </span><span style="color:#e6db74">&#34;{{ environment.inputs.cost_center }}&#34;</span>,
+      <span style="color:#f92672">&#34;LOB_Owner&#34;: </span><span style="color:#e6db74">&#34;{{ environment.inputs.lob_owner }}&#34;</span>
+    }
+    <span style="color:#f92672">Description</span>: <span style="color:#e6db74">&#34;{{ environment.inputs.application_name }}-{{ environment.name }}&#34;</span>
+    <span style="color:#f92672">Name</span>: <span style="color:#e6db74">&#34;{{ environment.inputs.application_name }}-{{ environment.name }}&#34;</span>
+<span style="color:#f92672">AppRegistryAttributeGroupAssociation</span>:
+  <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">AWS::ServiceCatalogAppRegistry::AttributeGroupAssociation</span>
+  <span style="color:#f92672">Properties</span>:
+    <span style="color:#f92672">Application</span>: !<span style="color:#ae81ff">GetAtt AppRegistryApp.Id</span>
+    <span style="color:#f92672">AttributeGroup</span>: <span style="color:#e6db74">&#34;{{ environment.inputs.application_name }}-{{ environment.name }}&#34;</span>
+  <span style="color:#f92672">DependsOn</span>:
+    - <span style="color:#ae81ff">AppRegistryApp</span>
+    - <span style="color:#ae81ff">AppRegistryAttributeGroup</span>
+</code></pre></div><p>In <code>Outputs</code>, add the new output variables.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">ApplicationName</span>:
+  <span style="color:#f92672">Value</span>: <span style="color:#e6db74">&#34;{{ environment.inputs.application_name }}&#34;</span>
+<span style="color:#f92672">CostCenter</span>:
+  <span style="color:#f92672">Value</span>: <span style="color:#e6db74">&#34;{{ environment.inputs.cost_center }}&#34;</span>
+<span style="color:#f92672">LobOwner</span>:
+  <span style="color:#f92672">Value</span>: <span style="color:#e6db74">&#34;{{ environment.inputs.lob_owner }}&#34;</span>
+<span style="color:#f92672">StackName</span>:
+  <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref AWS::StackName</span>
+</code></pre></div><p>Navigate to <code>environment/schema</code> and open <code>schema.yaml</code> by running the command below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql/environment/schema
+
+<span style="color:#75715e"># open file in Cloud9 editor</span>
+c9 schema.yaml
+</code></pre></div><p>Add the new input attributes under <code>properties</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">application_name</span>:
+  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+  <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;AWS ServiceCatalog AppRegistry application name.&#34;</span>
+<span style="color:#f92672">cost_center</span>:
+  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+  <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Application cost center.&#34;</span>
+<span style="color:#f92672">lob_owner</span>:
+  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+  <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Line of business (LOB) owner.&#34;</span>
+</code></pre></div><p>Declare those inputs as required under <code>PublicEnvironmentInput</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">required</span>:
+  - <span style="color:#ae81ff">application_name</span>
+  - <span style="color:#ae81ff">cost_center</span>
+  - <span style="color:#ae81ff">lob_owner</span>
+</code></pre></div>
+<div class="notices tip" ><p>The final schema in <code>schema.yaml</code> should look as below in the example.
+Please make sure you save the file before moving to the next step.</p>
+</div>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># Other attributes</span>
+...
+<span style="color:#f92672">types</span>:
+  <span style="color:#f92672">PublicEnvironmentInput</span>:
+  <span style="color:#75715e"># Other attributes</span>
+  <span style="color:#ae81ff">...</span>
+  <span style="color:#f92672">required</span>:
+    - <span style="color:#ae81ff">application_name</span>
+    - <span style="color:#ae81ff">cost_center</span>
+    - <span style="color:#ae81ff">lob_owner</span>
+  <span style="color:#f92672">properties</span>:
+    <span style="color:#75715e"># Other attributes</span>
+    <span style="color:#ae81ff">...</span>
+    <span style="color:#f92672">application_name</span>:
+      <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;AWS ServiceCatalog AppRegistry application name.&#34;</span>
+    <span style="color:#f92672">cost_center</span>:
+      <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;cost_center&#34;</span>
+    <span style="color:#f92672">lob_owner</span>:
+      <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;lob_owner&#34;</span>
+</code></pre></div><p>Create environment template bundle by zipping the <code>environment</code> folder, and upload the bundle to your S3 bucket.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/environment/moving-up-stack-workshop/resources/code/scenario3/loadbalanced-fargate-redis-mysql
+
+tar -czf far-pubpriv-env-template-v2.tar.gz environment/
+aws s3 cp <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  far-pubpriv-env-template-v2.tar.gz <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  s3://proton-cli-templates-<span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span>/far-pubpriv-env-template-v2.tar.gz
+rm far-pubpriv-env-template-v2.tar.gz
+</code></pre></div><p>Now that the new bundle is uploaded to your S3 bucket, create new version of the existing environment template.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">aws proton create-environment-template-version <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --template-name <span style="color:#e6db74">&#34;Fargate-Public-Private-VPC&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --source s3<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{bucket=proton-cli-templates-</span><span style="color:#e6db74">${</span>ACCOUNT_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span>AWS_DEFAULT_REGION<span style="color:#e6db74">}</span><span style="color:#e6db74">,key=far-pubpriv-env-template-v2.tar.gz}&#34;</span>
+</code></pre></div><p>You can now publish the new environment template version, making it available for users in your AWS account to
+either create Proton environments or update existing that are created from previous version.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">aws proton update-environment-template-version <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --template-name <span style="color:#e6db74">&#34;Fargate-Public-Private-VPC&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --major-version <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --minor-version <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --status <span style="color:#e6db74">&#34;PUBLISHED&#34;</span>
+</code></pre></div>
+<div class="notices tip" ><p><em><strong>What did we just do?</strong></em>
+We just updated an existing Proton environment template and published it, making this version available for deployment.
+<a href="https://console.aws.amazon.com/proton/home#/templates/environments">Open the Proton Environment Templates console</a>
+and check that your new template has the recommended and published version <code>2.0</code>.</p>
+</div>
+
+<p><img src="images/05_updated_env_template_version_2_0.png?classes=shadow" alt="env_templates">
+<img src="images/05_updated_env_template_version_2_0_published.png?width=80pc&amp;classes=shadow" alt="env_templates"></p>
+<p>Now let&rsquo;s update the environment to the new version.
+<a href="https://console.aws.amazon.com/proton/home#/environments">Open the Proton Environments console</a>
+select the deployed environment. Open the environment <code>MyFargateEnvironment</code>, click <code>Actions</code> and choose <code>Update major</code>.</p>
+<p>On the <code>Configure Environment</code> screen, click <code>Edit</code>.</p>
+<p>On the <code>Configure custom settings</code> screen:</p>
+<ul>
+<li>For <code>Application name</code> enter <em>EcsApp</em></li>
+<li>For <code>Cost center</code> enter <em>123456</em></li>
+<li>For <code>Lob owner</code> enter <em>Shirley Rodriguez</em></li>
+<li>Click <code>Next</code></li>
+</ul>
+<p>Finally, on the <code>Review</code> screen, click <code>Update</code>. Wait a few minutes for your environment to be updated.</p>
+
+<div class="notices tip" ><p><em><strong>What did we just do?</strong></em>
+We just updated an existing Proton environment using the new version of the environment template.
+<a href="https://console.aws.amazon.com/proton/home#/environments">Open the Proton console</a>
+and check that your environment is deployed using the new template version.</p>
+</div>
+
+<p><img src="images/05_updated_environment_version_2_0.png?classes=shadow" alt="environment_updated"></p>
+<p>Now that new version is deployed, let’s see what changes have been applied to the AppRegistry application.</p>
+<p>Navigate to the <a href="https://console.aws.amazon.com/servicecatalog/home#applications/">AWS Service Catalog AppRegistry application</a>
+and observe that a new application has been created.</p>
+<p>Select the application <code>EcsApp</code>, and observe that:</p>
+<ul>
+<li>In <code>Resources</code> tab we know which AWS resources are part of the application</li>
+<li>In <code>Attribute groups</code> tab we have one attribute group associated.</li>
+</ul>
+<p>In <code>Attribute groups</code> tab, click on the attribute group name and observe that the <code>Metadata</code> is a JSON object with the values
+we entered when updating the Proton environment.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;ApplicationName&#34;</span>: <span style="color:#e6db74">&#34;EcsApp&#34;</span>,
+  <span style="color:#f92672">&#34;CostCenter&#34;</span>: <span style="color:#e6db74">&#34;123456&#34;</span>,
+  <span style="color:#f92672">&#34;LOB_Owner&#34;</span>: <span style="color:#e6db74">&#34;Shirley Rodriguez&#34;</span>
+}
+</code></pre></div>
+<div class="notices tip" ><p><em><strong>What did we just do?</strong></em>
+We made the first step in mapping application resources and metadata in AppRegistry.
+We create an application and associated the environment resources with It. When updating the Proton environment,
+using the new version, we entered information about the application. This information is not stored in
+the AppRegistry attribute group that is also associated with the application.</p>
+</div>
+
+<p>Now let&rsquo;s see how we can map all the services to the AppRegistry application and further enrich the
+application metadata.</p>
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../scenario3.html" title="Increase application visibility and governance"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../scenario3/10_map_svc_resources_with_appregistry.html" title="Auto-register resources with AppRegistry" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../js/clipboard.min.js"></script>
+    <script src="../js/perfect-scrollbar.min.js"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/featherlight.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../js/modernizr.custom-3.6.0.js"></script>
+    <script src="../js/learn.js"></script>
+    <script src="../js/hugo-learn.js"></script>
+    
+        
+            <script src="../mermaid/mermaid.js"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    <div id = 'kinesisStreamName' title = ""/></div>
+<div id = 'cognitoPoolId' title = ""/></div>
+<div id = 'awsRegion' title = ""/></div>
+<div id = 'contentId' title = ""/></div>
+<div id = 'language' title = "en"/></div>
+<div id = 'versions' title = ""/></div>
+
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+<script src="../js/kinesis.js"></script>
+  </body>
+</html>
+
