@@ -43,11 +43,6 @@ The instructions in this workshop assume you are using a bash shell in a linux-l
 Copy/Paste the following code in your cloud9 terminal (you can paste the whole block at once).
 
 ```bash
-cat <<EOF >> ~/.bashrc
-export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
-EOF
-source ~/.bashrc
 sudo yum update -y
 sudo yum -y install jq gettext bash-completion moreutils
 
@@ -59,4 +54,10 @@ sudo ./aws/install
 npm install -g c9
 curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -o "session-manager-plugin.rpm"
 sudo yum install -y session-manager-plugin.rpm
+
+cat <<EOF >> ~/.bashrc
+export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
+export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
+EOF
+source ~/.bashrc
 ```
