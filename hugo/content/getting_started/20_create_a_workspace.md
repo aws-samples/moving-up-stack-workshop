@@ -46,6 +46,12 @@ Copy/Paste the following code in your cloud9 terminal (you can paste the whole b
 sudo yum update -y
 sudo yum -y install jq gettext bash-completion moreutils
 
+cat <<EOF >> ~/.bashrc
+export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
+export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
+EOF
+source ~/.bashrc
+
 # Upgrade AWS CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
@@ -54,10 +60,4 @@ sudo ./aws/install
 npm install -g c9
 curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -o "session-manager-plugin.rpm"
 sudo yum install -y session-manager-plugin.rpm
-
-cat <<EOF >> ~/.bashrc
-export AWS_DEFAULT_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-export ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
-EOF
-source ~/.bashrc
 ```

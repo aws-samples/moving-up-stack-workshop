@@ -1,11 +1,17 @@
-## My Project
+## Moving up the technology stack as you modernize your applications
 
-TODO: Fill this README out!
+## Abstract
 
-Be sure to:
+Modern applications are built with a modular architectural patterns, serverless operational models, 
+and automated software delivery processes. These patterns allow businesses to innovate faster while reducing risk, 
+time to market, and total cost of ownership. In this hands on workshop, we will *walk through some of the patterns* 
+and *learn how to pick and leverage the right services as part of your modernization journey.*
 
-* Change the title in this README
-* Edit your repository description on GitHub
+
+## Workshop instructions
+
+URL: https://aws-samples.github.io/moving-up-stack-workshop/
+
 
 ## Security
 
