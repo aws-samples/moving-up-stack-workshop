@@ -1,5 +1,5 @@
 Werkzeug==2.2.3
-Flask==1.1.2
+Flask==2.2.5
 Flask-Cors==3.0.9
 redis==4.5.4
 mysql-connector-python==8.0.26
